@@ -2,11 +2,10 @@ name = "Lengxiao"
 license = "MIT"
 licenselink = "https://opensource.org/licenses/MIT"
 description = "A configurable Chinese content portal theme for Hugo."
-homepage = "https://github.com/Christ9038/hugo-theme-lengxiao"
+homepage = "https://github.com/Christ9038/hugo-theme-lengxiao6"
 tags = ["blog", "portal", "Chinese", "responsive"]
 features = ["responsive", "dark mode", "taxonomy", "search"]
 min_version = "0.141.0"
 
 [author]
   name = "Lengxiao"
-

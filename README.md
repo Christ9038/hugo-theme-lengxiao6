@@ -14,7 +14,7 @@ hugo server -s exampleSite -D
 ```toml
 [module]
   [[module.imports]]
-    path = "github.com/Christ9038/hugo-theme-lengxiao"
+    path = "github.com/Christ9038/hugo-theme-lengxiao6"
 ```
 
 文章可选字段：
@@ -29,4 +29,3 @@ homeOrder: 10
 ## 许可
 
 MIT License。主题为独立实现，不包含 Blowfish 源码。
-
