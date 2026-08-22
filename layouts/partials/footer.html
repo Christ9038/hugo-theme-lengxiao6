@@ -1,2 +1,10 @@
-<footer class="site-footer"><div class="shell"><span>© {{ now.Year }} {{ site.Title }}</span><span>{{ site.Params.footer.text }}</span></div></footer>
-
+<footer class="site-footer">
+  <div class="shell footer-inner">
+    <div class="footer-copyright">© {{ now.Year }} {{ site.Title }}</div>
+    <div class="footer-records">
+      {{ with site.Params.footer.icp }}<a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer">{{ . }}</a>{{ end }}
+      {{ with site.Params.footer.publicSecurity }}<a href="{{ site.Params.footer.publicSecurityUrl | default "https://beian.mps.gov.cn/" }}" target="_blank" rel="noopener noreferrer">{{ . }}</a>{{ end }}
+      {{ with site.Params.footer.text }}<span>{{ . }}</span>{{ end }}
+    </div>
+  </div>
+</footer>

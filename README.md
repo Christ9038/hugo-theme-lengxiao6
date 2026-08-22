@@ -35,6 +35,18 @@ homeOrder: 10
   name = "站点作者"
   headline = "记录实践，分享方法"
   image = "img/avatar.jpg"
+  links = [
+    { bilibili = "https://space.bilibili.com/你的账号" },
+    { douyin = "https://www.douyin.com/user/你的账号" },
+    { xiaohongshu = "https://www.xiaohongshu.com/user/profile/你的账号" },
+    { youtube = "https://www.youtube.com/@你的账号" },
+    { x = "https://x.com/你的账号" }
+  ]
+
+[params.footer]
+  icp = "京ICP备00000000号-1"
+  publicSecurity = "京公网安备11000000000000号"
+  publicSecurityUrl = "https://beian.mps.gov.cn/"
 
 [[params.home.sections]]
   key = "featured"

@@ -19,6 +19,18 @@ enableRobotsTXT = true
     name = "不爱折腾的六叔"
     headline = "探索 AI 与科技，分享副业与生活。"
     image = "img/avatar.svg"
+    links = [
+      { bilibili = "https://space.bilibili.com/197587769" },
+      { douyin = "https://www.douyin.com/" },
+      { xiaohongshu = "https://www.xiaohongshu.com/" },
+      { youtube = "https://www.youtube.com/" },
+      { x = "https://x.com/" }
+    ]
+
+  [params.footer]
+    icp = "京ICP备00000000号-1"
+    publicSecurity = "京公网安备11000000000000号"
+    publicSecurityUrl = "https://beian.mps.gov.cn/"
   [params.home]
     eyebrow = "AI · 科技 · 实践"
     title = "记录实践，分享方法"

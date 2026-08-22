@@ -9,7 +9,15 @@
     <h1>{{ site.Params.home.title | default site.Params.Author.name | default site.Title }}</h1>
     <p class="hero-description">{{ site.Params.home.description | default site.Params.description }}</p>
     <div class="hero-actions"><a class="button primary" href="{{ "posts/" | relURL }}">浏览文章</a><a class="button" href="{{ "categories/" | relURL }}">探索分类</a></div>
-    <div class="author-note">{{ with site.Params.Author.image }}<img src="{{ . | relURL }}" alt="">{{ end }}<span>{{ site.Params.Author.name }}<small>{{ site.Params.Author.headline }}</small></span></div>
+    <div class="author-note">
+      <div class="author-note-main">{{ with site.Params.Author.image }}<img src="{{ . | relURL }}" alt="{{ site.Params.Author.name }}">{{ end }}<span>{{ site.Params.Author.name }}<small>{{ site.Params.Author.headline }}</small></span></div>
+      {{ with site.Params.Author.links }}
+        {{ $labels := dict "telegram" "Telegram" "github" "GitHub" "bilibili" "B站" "douyin" "抖音" "xiaohongshu" "小红书" "youtube" "YouTube" "x" "X" "twitter" "X" }}
+        <div class="author-links" aria-label="全平台账号">
+          {{ range . }}{{ range $service, $url := . }}{{ $label := default $service (index $labels $service) }}<a href="{{ $url }}" target="_blank" rel="me noopener noreferrer" aria-label="{{ $label }}" title="{{ $label }}">{{ $label }}</a>{{ end }}{{ end }}
+        </div>
+      {{ end }}
+    </div>
   </div>
   <div class="hero-banner" data-banner-rotator>
     {{ range site.Params.home.banners }}<a class="banner-slide" href="{{ .link | default "#" }}"><img src="{{ .image | relURL }}" alt="{{ .title }}"><span><strong>{{ .title }}</strong>{{ .description }}</span></a>{{ end }}
