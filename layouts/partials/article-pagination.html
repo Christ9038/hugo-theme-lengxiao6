@@ -1,0 +1,4 @@
+<nav class="article-pagination" aria-label="文章导航">
+  {{ with .PrevInSection }}<a class="article-pagination-prev" href="{{ .RelPermalink }}"><span>上一篇</span><strong>← {{ .Title }}</strong></a>{{ end }}
+  {{ with .NextInSection }}<a class="article-pagination-next" href="{{ .RelPermalink }}"><span>下一篇</span><strong>{{ .Title }} →</strong></a>{{ end }}
+</nav>

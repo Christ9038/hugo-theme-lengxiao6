@@ -1,0 +1,9 @@
+{{ with .Params.series }}
+  <aside class="article-series" aria-label="文章选集">
+    <span class="article-series-label">选集</span>
+    {{ range . }}
+      {{ $name := . }}
+      <a href="{{ printf "series/%s/" ($name | urlize) | relURL }}">{{ $name }}</a>
+    {{ end }}
+  </aside>
+{{ end }}

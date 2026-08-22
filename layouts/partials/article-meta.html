@@ -1,0 +1,8 @@
+<div class="article-meta">
+  <time datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">{{ .Date.Format (site.Params.dateFormat | default "2006年1月2日") }}</time>
+  <span aria-hidden="true">·</span>
+  <span>{{ .WordCount }} 字</span>
+  <span aria-hidden="true">·</span>
+  <span title="预计阅读">{{ .ReadingTime }} 分钟阅读</span>
+  {{ if .Draft }}<span class="article-draft">草稿</span>{{ end }}
+</div>

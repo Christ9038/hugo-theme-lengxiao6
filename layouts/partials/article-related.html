@@ -1,0 +1,10 @@
+{{ $categories := .Params.categories }}
+{{ $related := where site.RegularPages "Permalink" "ne" .Permalink }}
+{{ if $categories }}{{ $related = where $related "Params.categories" "intersect" $categories }}{{ end }}
+{{ $related = first 3 ($related.ByDate.Reverse) }}
+{{ with $related }}
+  <section class="article-related" aria-labelledby="related-title">
+    <div class="article-related-heading"><h2 id="related-title">相关文章</h2><a href="{{ "posts/" | relURL }}">查看全部</a></div>
+    <div class="article-related-grid">{{ range . }}{{ partial "article-card.html" . }}{{ end }}</div>
+  </section>
+{{ end }}

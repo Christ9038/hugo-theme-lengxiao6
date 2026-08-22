@@ -1,2 +1,44 @@
-{{ define "main" }}<article class="shell article-single"><header><p class="eyebrow">{{ with index .Params.categories 0 }}{{ . }}{{ end }}</p><h1>{{ .Title }}</h1><p class="article-lede">{{ .Description }}</p><div class="card-meta"><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006-01-02" }}</time>{{ with site.Params.Author.name }}<span>{{ . }}</span>{{ end }}</div></header><div class="article-content">{{ .Content }}</div><footer class="article-footer">{{ range .Params.tags }}<a href="{{ (printf "tags/%s/" (. | urlize)) | relURL }}">#{{ . }}</a>{{ end }}</footer></article>{{ end }}
+{{ define "main" }}
+  {{ $showToc := and (site.Params.article.showTableOfContents | default true) (in .TableOfContents "<ul") }}
+  <article class="shell article-single">
+    <header class="article-header">
+      <h1>{{ .Title }}</h1>
+      {{ partial "article-meta.html" . }}
+      {{ with site.Params.Author }}
+        <div class="article-author-block">
+          {{ with .image }}<img src="{{ . | relURL }}" alt="{{ site.Params.Author.name }}">{{ end }}
+          <div>
+            <span class="article-author-label">作者</span>
+            <strong>{{ .name }}</strong>
+            {{ with .headline }}<small>{{ . }}</small>{{ end }}
+            {{ with .links }}
+              <div class="article-author-links">
+                {{ range . }}{{ range $service, $url := . }}<a href="{{ $url }}" target="_blank" rel="me noopener noreferrer">{{ $service }}</a>{{ end }}{{ end }}
+              </div>
+            {{ end }}
+          </div>
+        </div>
+      {{ end }}
+    </header>
 
+    <div class="article-body-layout{{ if not $showToc }} article-body-layout--plain{{ end }}">
+      <div class="article-main-column">
+        {{ partial "article-series.html" . }}
+        <div class="article-content">{{ .Content }}</div>
+        {{ partial "article-copyright.html" . }}
+        {{ partial "article-tags.html" . }}
+        {{ partial "article-related.html" . }}
+      </div>
+      {{ if $showToc }}
+        <aside class="article-toc" aria-label="文章目录">
+          <div class="article-toc-inner">
+            <p class="article-toc-title">目录</p>
+            {{ .TableOfContents }}
+          </div>
+        </aside>
+      {{ end }}
+    </div>
+
+    {{ partial "article-pagination.html" . }}
+  </article>
+{{ end }}

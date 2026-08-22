@@ -1,0 +1,5 @@
+{{ with .Params.tags }}
+  <footer class="article-tags" aria-label="文章标签">
+    {{ range . }}<a href="{{ printf "tags/%s/" (. | urlize) | relURL }}">#{{ . }}</a>{{ end }}
+  </footer>
+{{ end }}

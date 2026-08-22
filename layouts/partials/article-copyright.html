@@ -1,0 +1,15 @@
+{{ $enabled := .Params.showArticleCopyright | default (site.Params.article.showArticleCopyright | default true) }}
+{{ if $enabled }}
+  {{ $author := .Params.copyrightAuthor | default (site.Params.article.copyrightAuthor | default site.Params.Author.name) }}
+  {{ $license := .Params.copyrightLicense | default (site.Params.article.copyrightLicense | default "保留所有权利") }}
+  {{ $notice := .Params.copyrightNotice | default (site.Params.article.copyrightNotice | default "除特别声明外，本站文章均为原创内容。未经许可，禁止转载、摘编或用于商业用途。") }}
+  <aside class="article-copyright">
+    <h2>版权声明</h2>
+    <dl>
+      <div><dt>作者</dt><dd>{{ $author }}</dd></div>
+      <div><dt>文章链接</dt><dd><a href="{{ .Permalink }}">{{ .Permalink }}</a></dd></div>
+      <div><dt>版权许可</dt><dd>{{ $license }}</dd></div>
+      <div><dt>说明</dt><dd>{{ $notice }}</dd></div>
+    </dl>
+  </aside>
+{{ end }}

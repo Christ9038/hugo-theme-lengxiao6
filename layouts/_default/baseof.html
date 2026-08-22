@@ -1,5 +1,6 @@
 <!doctype html>
-<html lang="{{ site.LanguageCode | default "zh-cn" }}" data-theme="light">
+{{ $defaultTheme := site.Params.defaultAppearance | default "light" }}
+<html lang="{{ site.LanguageCode | default "zh-cn" }}" data-theme="{{ $defaultTheme }}">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -9,11 +10,13 @@
   <link rel="stylesheet" href="{{ "css/theme.css" | relURL }}">
   <link rel="stylesheet" href="{{ "css/background.css" | relURL }}">
   <link rel="stylesheet" href="{{ "css/taxonomy.css" | relURL }}">
+  <link rel="stylesheet" href="{{ "css/article.css" | relURL }}">
+  <link rel="stylesheet" href="{{ "css/dark.css" | relURL }}">
   {{ if .IsHome }}{{ with .OutputFormats.Get "json" }}<link rel="alternate" type="application/json" href="{{ .RelPermalink }}">{{ end }}{{ end }}
   {{ block "head" . }}{{ end }}
 </head>
 <body class="{{ if .IsHome }}home-page{{ end }}">
-  {{ if .IsHome }}<div class="site-background" aria-hidden="true"></div>{{ end }}
+  <div class="site-background" aria-hidden="true"></div>
   {{ partial "header.html" . }}
   <main>{{ block "main" . }}{{ end }}</main>
   {{ partial "footer.html" . }}

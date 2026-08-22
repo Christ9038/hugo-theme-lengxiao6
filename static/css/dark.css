@@ -1,0 +1,65 @@
+html[data-theme="dark"] {
+  --bg: #18181a;
+  --surface: rgba(31, 31, 34, 0.78);
+  --muted-surface: rgba(39, 39, 42, 0.74);
+  --text: #f5f5f7;
+  --muted: #a1a1a6;
+  --line: rgba(255, 255, 255, 0.14);
+  --soft: rgba(255, 255, 255, 0.09);
+  --shadow: 0 4px 24px rgba(0, 0, 0, 0.22);
+}
+
+html[data-theme="dark"],
+html[data-theme="dark"] body {
+  background: var(--bg);
+  color: var(--text);
+}
+
+html[data-theme="dark"] .site-header {
+  background: rgba(24, 24, 26, 0.82);
+}
+
+html[data-theme="dark"] .search-link,
+html[data-theme="dark"] .icon-button,
+html[data-theme="dark"] .button,
+html[data-theme="dark"] .content-section,
+html[data-theme="dark"] .article-card,
+html[data-theme="dark"] .category-nav,
+html[data-theme="dark"] .article-series,
+html[data-theme="dark"] .article-copyright {
+  background: var(--surface);
+}
+
+html[data-theme="dark"] .banner-fallback {
+  background: var(--muted-surface);
+}
+
+html[data-theme="dark"] .button.primary {
+  background: #f5f5f7;
+  color: #1d1d1f;
+}
+
+html[data-theme="dark"] .article-content a {
+  color: #b2c7ff;
+  text-decoration-color: rgba(178, 199, 255, 0.44);
+}
+
+html[data-theme="dark"] .article-content blockquote {
+  border-color: #77777d;
+}
+
+html[data-theme="dark"] .article-content pre {
+  background: #111113;
+}
+
+html[data-theme="dark"] .article-content code {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+html[data-theme="dark"] .article-content th {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+html[data-theme="dark"] .article-copyright a {
+  color: var(--text);
+}
