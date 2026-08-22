@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <pattern id="rain" width="320" height="320" patternUnits="userSpaceOnUse">
+      <g fill="none" stroke="#8e8e93" stroke-linecap="round" stroke-width="2.5" opacity=".22">
+        <path d="M40 20l-28 28"><animateTransform attributeName="transform" type="translate" values="0 0;24 300" dur="8s" repeatCount="indefinite"/></path>
+        <path d="M145 80l-18 18"><animateTransform attributeName="transform" type="translate" values="0 0;18 300" dur="6.5s" begin="-2s" repeatCount="indefinite"/></path>
+        <path d="M245 25l-35 35"><animateTransform attributeName="transform" type="translate" values="0 0;30 300" dur="9s" begin="-5s" repeatCount="indefinite"/></path>
+        <path d="M285 170l-20 20"><animateTransform attributeName="transform" type="translate" values="0 0;12 300" dur="7s" begin="-1s" repeatCount="indefinite"/></path>
+        <path d="M90 245l-32 32"><animateTransform attributeName="transform" type="translate" values="0 0;28 300" dur="8.5s" begin="-4s" repeatCount="indefinite"/></path>
+        <path d="M190 205l-14 14"><animateTransform attributeName="transform" type="translate" values="0 0;16 300" dur="6s" begin="-3s" repeatCount="indefinite"/></path>
+      </g>
+    </pattern>
+  </defs>
+  <rect width="1600" height="1000" fill="url(#rain)"/>
+</svg>

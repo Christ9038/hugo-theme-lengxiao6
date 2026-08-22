@@ -13,7 +13,7 @@
   </div>
   <div class="hero-banner" data-banner-rotator>
     {{ range site.Params.home.banners }}<a class="banner-slide" href="{{ .link | default "#" }}"><img src="{{ .image | relURL }}" alt="{{ .title }}"><span><strong>{{ .title }}</strong>{{ .description }}</span></a>{{ end }}
-    {{ if not site.Params.home.banners }}{{ with site.Params.homepage.homepageImage }}<a class="banner-slide banner-image-fallback" href="{{ "posts/" | relURL }}"><img src="{{ . | relURL }}" alt=""><span><strong>{{ site.Title }}</strong>{{ site.Params.description }}</span></a>{{ else }}<div class="banner-fallback"><span>探索 AI 与科技</span><strong>记录实践，分享方法</strong></div>{{ end }}{{ end }}
+    {{ if not site.Params.home.banners }}<div class="banner-fallback"><span>探索 AI 与科技</span><strong>{{ site.Title }}</strong><small>{{ site.Params.description }}</small></div>{{ end }}
   </div>
 </section>
 <div class="home-sections shell">

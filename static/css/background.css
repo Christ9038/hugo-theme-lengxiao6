@@ -1,0 +1,1 @@
+.site-background{position:fixed;inset:0;z-index:0;pointer-events:none;background:var(--bg) url('../img/background-rain.svg') center top/cover no-repeat;opacity:.5}.home-page .site-header,.home-page main,.home-page .site-footer{position:relative;z-index:1}.banner-fallback{gap:8px}.banner-fallback small{display:block;color:var(--muted);font-size:14px}
