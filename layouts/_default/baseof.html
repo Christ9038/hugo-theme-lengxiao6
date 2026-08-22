@@ -6,8 +6,7 @@
   <title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }} · {{ site.Title }}{{ end }}</title>
   <meta name="description" content="{{ .Description | default site.Params.description | plainify | htmlEscape }}">
   <link rel="canonical" href="{{ .Permalink }}">
-  {{ $css := resources.Get "css/theme.css" | minify | fingerprint }}
-  <link rel="stylesheet" href="{{ $css.RelPermalink }}">
+  <link rel="stylesheet" href="{{ "css/theme.css" | relURL }}">
   {{ if .IsHome }}{{ with .OutputFormats.Get "json" }}<link rel="alternate" type="application/json" href="{{ .RelPermalink }}">{{ end }}{{ end }}
   {{ block "head" . }}{{ end }}
 </head>
@@ -15,7 +14,6 @@
   {{ partial "header.html" . }}
   <main>{{ block "main" . }}{{ end }}</main>
   {{ partial "footer.html" . }}
-  {{ $js := resources.Get "js/theme.js" | minify | fingerprint }}
-  <script src="{{ $js.RelPermalink }}" defer></script>
+  <script src="{{ "js/theme.js" | relURL }}" defer></script>
 </body>
 </html>

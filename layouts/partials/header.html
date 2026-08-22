@@ -8,7 +8,7 @@
       <a href="{{ "posts/" | relURL }}">文章</a>
       <a href="{{ "categories/" | relURL }}">分类</a>
       <a href="{{ "tags/" | relURL }}">标签</a>
-      {{ with site.Menus.main }}{{ range . }}<a href="{{ .URL }}">{{ .Name }}</a>{{ end }}{{ end }}
+      {{ with site.Menus.main }}{{ range . }}{{ if ne .PageRef "posts" }}<a href="{{ .URL }}">{{ .Name }}</a>{{ end }}{{ end }}{{ end }}
     </nav>
     <div class="header-tools">
       <a class="search-link" href="{{ "search/" | relURL }}">搜索文章</a>
@@ -16,4 +16,3 @@
     </div>
   </div>
 </header>
-
