@@ -1,0 +1,14 @@
+<section class="shell search-page" aria-labelledby="search-title">
+  <header class="search-heading">
+    <p class="eyebrow">SEARCH</p>
+    <h1 id="search-title">搜索文章</h1>
+    <p>按标题、描述、分类和标签查找内容。</p>
+  </header>
+  <form class="search-form" role="search" onsubmit="return false">
+    <label class="sr-only" for="search-input">搜索文章</label>
+    <input id="search-input" type="search" autocomplete="off" placeholder="输入关键词...">
+    <button type="submit" aria-label="执行搜索" title="执行搜索">⌕</button>
+  </form>
+  <p class="search-status" id="search-status" role="status"></p>
+  <div class="search-results article-grid" id="search-results"></div>
+</section>
