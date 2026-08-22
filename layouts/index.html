@@ -14,9 +14,8 @@
 </section>
 <div class="home-sections shell">
   {{ range site.Params.home.sections }}
-  {{ $key := .key }}{{ $pages := where site.RegularPages "Params.homeSections" "intersect" (slice $key) }}{{ $pages = sort $pages "Params.homeOrder" "asc" }}
+  {{ $key := .key }}{{ $pages := where site.RegularPages "Params.homeSections" "intersect" (slice $key) }}{{ if not $pages }}{{ $pages = site.RegularPages.ByDate.Reverse }}{{ end }}{{ $pages = sort $pages "Params.homeOrder" "asc" }}
   <section class="content-section"><div class="section-heading"><div><p class="eyebrow">{{ .eyebrow | default "精选内容" }}</p><h2>{{ .title }}</h2><p>{{ .description }}</p></div><a href="{{ .href | relURL }}">更多内容 →</a></div><div class="article-grid {{ .layout | default "grid" }}">{{ range first (.limit | default 6) $pages }}{{ partial "article-card.html" . }}{{ end }}</div></section>
   {{ end }}
 </div>
 {{ end }}
-
