@@ -1,0 +1,10 @@
+{{ $label := "分类" }}
+{{ if eq .Data.Plural "tags" }}{{ $label = "标签" }}{{ end }}
+{{ if eq .Data.Plural "series" }}{{ $label = "选集" }}{{ end }}
+{{ if eq .Data.Plural "authors" }}{{ $label = "作者" }}{{ end }}
+<div class="shell page-heading taxonomy-heading"><p class="eyebrow">{{ upper .Data.Plural }}</p><h1>{{ .Title }}</h1><p>{{ .Description | default (printf "%s下的全部文章。" $label) }}</p></div>
+{{ $terms := index site.Taxonomies .Data.Plural }}
+<div class="shell taxonomy-layout">
+  <aside class="category-nav taxonomy-nav"><p>{{ $label }}导航</p><a href="{{ (printf "%s/" .Data.Plural) | relURL }}">全部{{ $label }}</a>{{ range $terms.ByCount }}<a class="{{ if eq .Page.RelPermalink $.RelPermalink }}active{{ end }}" href="{{ .Page.RelPermalink }}"><span>{{ .Page.Title }}</span><span>{{ .Count }}</span></a>{{ end }}</aside>
+  <section class="taxonomy-term-results"><div class="group-heading"><h2>{{ .Title }}</h2><span>{{ len .Pages }} 篇文章</span></div><div class="article-grid">{{ range .Pages.ByDate.Reverse }}{{ partial "article-card.html" . }}{{ end }}</div></section>
+</div>

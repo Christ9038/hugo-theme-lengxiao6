@@ -8,6 +8,7 @@
   <link rel="canonical" href="{{ .Permalink }}">
   <link rel="stylesheet" href="{{ "css/theme.css" | relURL }}">
   <link rel="stylesheet" href="{{ "css/background.css" | relURL }}">
+  <link rel="stylesheet" href="{{ "css/taxonomy.css" | relURL }}">
   {{ if .IsHome }}{{ with .OutputFormats.Get "json" }}<link rel="alternate" type="application/json" href="{{ .RelPermalink }}">{{ end }}{{ end }}
   {{ block "head" . }}{{ end }}
 </head>

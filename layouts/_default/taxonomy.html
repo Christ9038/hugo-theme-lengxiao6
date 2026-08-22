@@ -1,2 +1,1 @@
-{{ define "main" }}{{ partial "taxonomy-page.html" . }}{{ end }}
-
+{{ define "main" }}{{ if eq .Kind "term" }}{{ partial "taxonomy-term.html" . }}{{ else }}{{ partial "taxonomy-index.html" . }}{{ end }}{{ end }}
