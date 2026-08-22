@@ -1,0 +1,22 @@
+{{ define "main" }}
+<section class="home-hero shell">
+  <div class="hero-copy">
+    <p class="eyebrow">{{ site.Params.home.eyebrow | default "AI · 科技 · 实践" }}</p>
+    <h1>{{ site.Params.home.title | default site.Title }}</h1>
+    <p class="hero-description">{{ site.Params.home.description | default site.Params.description }}</p>
+    <div class="hero-actions"><a class="button primary" href="{{ "posts/" | relURL }}">浏览文章</a><a class="button" href="{{ "categories/" | relURL }}">探索分类</a></div>
+    <div class="author-note">{{ with site.Params.Author.image }}<img src="{{ . | relURL }}" alt="">{{ end }}<span>{{ site.Params.Author.name }}<small>{{ site.Params.Author.headline }}</small></span></div>
+  </div>
+  <div class="hero-banner" data-banner-rotator>
+    {{ range site.Params.home.banners }}<a class="banner-slide" href="{{ .link | default "#" }}"><img src="{{ .image | relURL }}" alt="{{ .title }}"><span><strong>{{ .title }}</strong>{{ .description }}</span></a>{{ end }}
+    {{ if not site.Params.home.banners }}<div class="banner-fallback"><span>探索 AI 与科技</span><strong>记录实践，分享方法</strong></div>{{ end }}
+  </div>
+</section>
+<div class="home-sections shell">
+  {{ range site.Params.home.sections }}
+  {{ $key := .key }}{{ $pages := where site.RegularPages "Params.homeSections" "intersect" (slice $key) }}{{ $pages = sort $pages "Params.homeOrder" "asc" }}
+  <section class="content-section"><div class="section-heading"><div><p class="eyebrow">{{ .eyebrow | default "精选内容" }}</p><h2>{{ .title }}</h2><p>{{ .description }}</p></div><a href="{{ .href | relURL }}">更多内容 →</a></div><div class="article-grid {{ .layout | default "grid" }}">{{ range first (.limit | default 6) $pages }}{{ partial "article-card.html" . }}{{ end }}</div></section>
+  {{ end }}
+</div>
+{{ end }}
+

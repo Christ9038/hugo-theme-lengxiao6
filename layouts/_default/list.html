@@ -1,0 +1,2 @@
+{{ define "main" }}<div class="shell page-heading"><p class="eyebrow">INDEX</p><h1>{{ .Title }}</h1><p>{{ .Description }}</p></div><div class="shell article-grid">{{ range .Pages }}{{ partial "article-card.html" . }}{{ end }}</div>{{ end }}
+

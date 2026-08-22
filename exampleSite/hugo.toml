@@ -1,0 +1,48 @@
+baseURL = "http://localhost:1313/"
+languageCode = "zh-cn"
+title = "六叔资源站"
+theme = "hugo-theme-lengxiao"
+enableRobotsTXT = true
+
+[taxonomies]
+  category = "categories"
+  tag = "tags"
+  series = "series"
+  author = "authors"
+
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
+
+[params]
+  description = "探索 AI 与科技，分享实践和方法。"
+  [params.Author]
+    name = "不爱折腾的六叔"
+    headline = "探索 AI 与科技，分享副业与生活。"
+    image = "img/avatar.svg"
+  [params.home]
+    eyebrow = "AI · 科技 · 实践"
+    title = "记录实践，分享方法"
+    description = "一个安静、清晰、适合长期积累的中文内容空间。"
+    [[params.home.banners]]
+      image = "img/banner.svg"
+      title = "探索 AI 与科技"
+      description = "记录实践，分享方法"
+      link = "/posts/"
+    [[params.home.sections]]
+      key = "featured"
+      title = "精选文章"
+      description = "值得优先阅读的内容"
+      href = "/posts/"
+      limit = 4
+      layout = "featured"
+    [[params.home.sections]]
+      key = "ai"
+      title = "AI 实践"
+      description = "AI 工具、教程与实践记录"
+      href = "/categories/AI/"
+      limit = 6
+      layout = "grid"
+
+[permalinks]
+  posts = "/posts/:slug/"
+
