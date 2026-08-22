@@ -9,7 +9,6 @@
           <path d="M155 182l-68 68"/>
           <path d="M328 234l-50 50"/>
           <path d="M76 296L2 370"/>
-          <animateTransform attributeName="transform" type="translate" values="0 0;-180 220" dur="7.5s" repeatCount="indefinite"/>
         </g>
         <g opacity=".65">
           <path d="M208 -52L132 24"/>
@@ -17,7 +16,6 @@
           <path d="M292 158l-78 78"/>
           <path d="M122 326l-62 62"/>
           <path d="M362 302l-72 72"/>
-          <animateTransform attributeName="transform" type="translate" values="0 0;-180 220" dur="10s" begin="-3.5s" repeatCount="indefinite"/>
         </g>
       </g>
     </pattern>
