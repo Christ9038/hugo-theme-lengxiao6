@@ -1,5 +1,7 @@
 <!doctype html>
 {{ $defaultTheme := site.Params.defaultAppearance | default "light" }}
+{{ $enableCodeCopy := true }}
+{{ if isset site.Params "enableCodeCopy" }}{{ $enableCodeCopy = site.Params.enableCodeCopy }}{{ end }}
 <html lang="{{ site.LanguageCode | default "zh-cn" }}" data-theme="{{ $defaultTheme }}" data-search-index="{{ "index.json" | relURL }}">
 <head>
   <meta charset="utf-8">
@@ -21,7 +23,7 @@
   {{ if .IsHome }}{{ with .OutputFormats.Get "json" }}<link rel="alternate" type="application/json" href="{{ .RelPermalink }}">{{ end }}{{ end }}
   {{ block "head" . }}{{ end }}
 </head>
-<body class="{{ if .IsHome }}home-page{{ end }}" data-code-copy="{{ site.Params.enableCodeCopy | default true }}">
+<body class="{{ if .IsHome }}home-page{{ end }}" data-code-copy="{{ $enableCodeCopy }}">
   <div class="site-background" aria-hidden="true"></div>
   {{ partial "header.html" . }}
   <main>{{ block "main" . }}{{ end }}</main>

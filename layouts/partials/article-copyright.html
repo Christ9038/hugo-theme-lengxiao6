@@ -1,4 +1,6 @@
-{{ $enabled := .Params.showArticleCopyright | default (site.Params.article.showArticleCopyright | default true) }}
+{{ $enabled := true }}
+{{ with site.Params.article }}{{ if isset . "showArticleCopyright" }}{{ $enabled = .showArticleCopyright }}{{ end }}{{ end }}
+{{ if isset .Params "showArticleCopyright" }}{{ $enabled = .Params.showArticleCopyright }}{{ end }}
 {{ if $enabled }}
   {{ $isChinese := hasPrefix (lower .Page.Language.Lang) "zh" }}
   {{ $title := cond $isChinese "版权声明" "Copyright" }}

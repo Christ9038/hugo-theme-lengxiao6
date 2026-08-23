@@ -295,6 +295,10 @@ nav {
   border-radius: 0;
 }
 
+.hero-copy > .eyebrow {
+  font-size: 12px;
+}
+
 .site-footer {
   height: 92px;
   min-height: 92px;
@@ -416,6 +420,20 @@ nav {
 
   .home-hero {
     padding: 24px 14px;
+  }
+
+  .home-hero .hero-actions {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .home-hero .hero-actions .button {
+    width: 100%;
+  }
+
+  .home-hero .author-links {
+    width: 100%;
+    justify-content: center;
   }
 
   .article-grid .article-card {

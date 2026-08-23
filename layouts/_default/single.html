@@ -1,5 +1,7 @@
 {{ define "main" }}
-  {{ $showToc := and (site.Params.article.showTableOfContents | default true) (in .TableOfContents "<ul") }}
+  {{ $showToc := true }}
+  {{ with site.Params.article }}{{ if isset . "showTableOfContents" }}{{ $showToc = .showTableOfContents }}{{ end }}{{ end }}
+  {{ $showToc = and $showToc (in .TableOfContents "<ul") }}
   <article class="shell article-single">
     <header class="article-header">
       <h1>{{ .Title }}</h1>
