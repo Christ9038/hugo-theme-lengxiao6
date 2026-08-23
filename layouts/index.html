@@ -1,33 +1,45 @@
 {{ define "main" }}
 {{ $sections := site.Params.home.sections }}
-{{ if not $sections }}
-  {{ $sections = slice (dict "key" "recent" "title" "最近的文章" "description" "按时间浏览最新发布的内容" "href" "/posts/" "limit" 6 "layout" "featured") }}
+{{ $banners := site.Params.home.banners | default (slice) }}
+{{ $hasRecent := false }}
+{{ range $sections }}{{ if or (eq .key "recent") (eq .source "recent") }}{{ $hasRecent = true }}{{ end }}{{ end }}
+{{ if not $hasRecent }}
+  {{ $recentOrder := site.Params.home.recentOrder | default 9999 }}
+  {{ $sections = $sections | append (dict "key" "recent" "source" "recent" "title" "最近的文章" "description" "按时间浏览最新发布的内容" "href" "/posts/" "limit" 6 "layout" "featured" "order" $recentOrder) }}
 {{ end }}
+{{ $sections = sort ($sections | default (slice)) "order" "asc" }}
 <section class="home-hero shell">
   <div class="hero-copy">
     <p class="eyebrow">{{ site.Params.home.eyebrow | default "AI · 科技 · 实践" }}</p>
     <h1>{{ site.Params.home.title | default site.Params.Author.name | default site.Title }}</h1>
     <p class="hero-description">{{ site.Params.home.description | default site.Params.description }}</p>
     <div class="hero-actions"><a class="button primary" href="{{ "posts/" | relURL }}">浏览文章</a><a class="button" href="{{ "categories/" | relURL }}">探索分类</a></div>
-    <div class="author-note">
-      <div class="author-note-main">{{ with site.Params.Author.image }}<img src="{{ . | relURL }}" alt="{{ site.Params.Author.name }}">{{ end }}<span>{{ site.Params.Author.name }}<small>{{ site.Params.Author.headline }}</small></span></div>
-      {{ with site.Params.Author.links }}
-        {{ $labels := dict "telegram" "Telegram" "github" "GitHub" "bilibili" "B站" "douyin" "抖音" "xiaohongshu" "小红书" "youtube" "YouTube" "x" "X" "twitter" "X" }}
-        <div class="author-links" aria-label="全平台账号">
-          {{ range . }}{{ range $service, $url := . }}{{ $label := default $service (index $labels $service) }}<a href="{{ $url }}" target="_blank" rel="me noopener noreferrer" aria-label="{{ $label }}" title="{{ $label }}">{{ $label }}</a>{{ end }}{{ end }}
-        </div>
-      {{ end }}
-    </div>
+    {{ with site.Params.Author.links }}
+      {{ $labels := dict "telegram" "Telegram" "github" "GitHub" "bilibili" "B站" "douyin" "抖音" "xiaohongshu" "小红书" "youtube" "YouTube" "x" "X" "twitter" "X" }}
+      <div class="author-links" aria-label="全平台账号">
+        {{ range . }}{{ range $service, $url := . }}{{ $label := default $service (index $labels (lower $service)) }}<a href="{{ $url }}" target="_blank" rel="me noopener noreferrer" aria-label="{{ $label }}" title="{{ $label }}">{{ partial "social-icon.html" $service }}</a>{{ end }}{{ end }}
+      </div>
+    {{ end }}
   </div>
-  <div class="hero-banner" data-banner-rotator>
-    {{ range site.Params.home.banners }}<a class="banner-slide" href="{{ .link | default "#" }}"><img src="{{ .image | relURL }}" alt="{{ .title }}"><span><strong>{{ .title }}</strong>{{ .description }}</span></a>{{ end }}
-    {{ if not site.Params.home.banners }}<div class="banner-fallback"><span>探索 AI 与科技</span><strong>{{ site.Title }}</strong><small>{{ site.Params.description }}</small></div>{{ end }}
+  <div class="hero-banner" data-banner-rotator data-interval="{{ site.Params.home.bannerInterval | default 5000 }}">
+    {{ range $index, $banner := $banners }}<a class="banner-slide{{ if eq $index 0 }} is-active{{ end }}" href="{{ $banner.link | default "#" }}" data-banner-slide="{{ $index }}"><img src="{{ $banner.image | relURL }}" alt="{{ $banner.title }}"><span><strong>{{ $banner.title }}</strong>{{ with $banner.description }}<small>{{ . }}</small>{{ end }}</span></a>{{ end }}
+    {{ if not $banners }}<div class="banner-fallback"><span>探索 AI 与科技</span><strong>{{ site.Title }}</strong><small>{{ site.Params.description }}</small></div>{{ end }}
+    {{ if gt (len $banners) 0 }}
+      <div class="banner-controls" aria-label="Banner 导航">
+        <div class="banner-dots">
+          {{ range $index, $banner := $banners }}<button type="button" data-banner-dot="{{ $index }}" aria-label="第 {{ add $index 1 }} 张 Banner"{{ if eq $index 0 }} aria-current="true"{{ end }}></button>{{ end }}
+        </div>
+      </div>
+    {{ end }}
   </div>
 </section>
 <div class="home-sections shell">
   {{ range $sections }}
-  {{ $key := .key }}{{ $pages := where site.RegularPages "Params.homeSections" "intersect" (slice $key) }}{{ if or (eq $key "recent") (not $pages) }}{{ $pages = site.RegularPages.ByDate.Reverse }}{{ end }}{{ $pages = sort $pages "Params.homeOrder" "asc" }}
-  <section class="content-section"><div class="section-heading"><div><p class="eyebrow">{{ .eyebrow | default "精选内容" }}</p><h2>{{ .title }}</h2><p>{{ .description }}</p></div><a href="{{ .href | relURL }}">更多内容 →</a></div><div class="article-grid {{ .layout | default "grid" }}">{{ range first (.limit | default 6) $pages }}{{ partial "article-card.html" . }}{{ end }}</div></section>
+  {{ $key := .key }}{{ $source := .source | default "manual" }}{{ $pages := slice }}
+  {{ if eq $source "recent" }}{{ $pages = site.RegularPages.ByDate.Reverse }}{{ else if eq $source "category" }}{{ $pages = where site.RegularPages "Params.categories" "intersect" (slice .category) }}{{ else if eq $source "tag" }}{{ $pages = where site.RegularPages "Params.tags" "intersect" (slice .tag) }}{{ else if eq $source "series" }}{{ $pages = where site.RegularPages "Params.series" "intersect" (slice .series) }}{{ else }}{{ $pages = where site.RegularPages "Params.homeSections" "intersect" (slice $key) }}{{ end }}
+  {{ if eq .sort "order" }}{{ $pages = sort $pages "Params.homeOrder" "asc" }}{{ else if ne $source "recent" }}{{ $pages = $pages.ByDate.Reverse }}{{ end }}
+  {{ $eyebrow := .eyebrow }}{{ if and (not $eyebrow) (ne $source "recent") }}{{ $eyebrow = "精选内容" }}{{ end }}
+  {{ if gt (len $pages) 0 }}<section class="content-section"><div class="section-heading"><div>{{ with $eyebrow }}<p class="eyebrow">{{ . }}</p>{{ end }}<h2>{{ .title }}</h2><p>{{ .description }}</p></div>{{ with .href }}<a href="{{ . | relURL }}">更多内容 →</a>{{ end }}</div><div class="article-grid {{ .layout | default "grid" }}">{{ range first (.limit | default 6) $pages }}{{ partial "article-card.html" . }}{{ end }}</div></section>{{ end }}
   {{ end }}
 </div>
 {{ end }}

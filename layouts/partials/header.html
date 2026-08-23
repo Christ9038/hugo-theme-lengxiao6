@@ -4,14 +4,15 @@
       {{ with site.Params.Author.image }}<img src="{{ . | relURL }}" alt="">{{ end }}
       <span><strong>{{ site.Title }}</strong><small>{{ site.Params.Author.headline | default "记录实践，分享方法" }}</small></span>
     </a>
-    <nav aria-label="主导航">
+    <nav id="main-navigation" aria-label="主导航">
       <a href="{{ "posts/" | relURL }}">文章</a>
       <a href="{{ "categories/" | relURL }}">分类</a>
       <a href="{{ "tags/" | relURL }}">标签</a>
       {{ with site.Menus.main }}{{ range . }}{{ if ne .PageRef "posts" }}<a href="{{ .URL }}">{{ .Name }}</a>{{ end }}{{ end }}{{ end }}
     </nav>
     <div class="header-tools">
-      <a class="search-link" href="{{ "search/" | relURL }}">搜索文章</a>
+      <button class="icon-button nav-toggle" type="button" data-nav-toggle aria-label="打开导航菜单" aria-controls="main-navigation" aria-expanded="false" title="打开导航菜单"><span class="menu-icon" aria-hidden="true"></span></button>
+      <a class="search-link" href="{{ "search/" | relURL }}" aria-label="搜索文章" title="搜索文章"><span class="search-icon" aria-hidden="true"></span></a>
       <button class="icon-button" data-theme-toggle aria-label="切换主题" title="切换主题" aria-pressed="false"><span data-theme-icon aria-hidden="true">◐</span></button>
     </div>
   </div>

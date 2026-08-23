@@ -4,24 +4,34 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }} · {{ site.Title }}{{ end }}</title>
+  <title>{{ if .IsHome }}{{ site.Title }}{{ else if eq .Kind "404" }}页面不存在 · {{ site.Title }}{{ else }}{{ .Title }} · {{ site.Title }}{{ end }}</title>
   <meta name="description" content="{{ .Description | default site.Params.description | plainify | htmlEscape }}">
   <link rel="canonical" href="{{ .Permalink }}">
-  <link rel="stylesheet" href="{{ "css/theme.css" | relURL }}">
-  <link rel="stylesheet" href="{{ "css/background.css" | relURL }}">
-  <link rel="stylesheet" href="{{ "css/taxonomy.css" | relURL }}">
-  <link rel="stylesheet" href="{{ "css/article.css" | relURL }}">
-  <link rel="stylesheet" href="{{ "css/dark.css" | relURL }}">
-  <link rel="stylesheet" href="{{ "css/search.css" | relURL }}">
-  <link rel="stylesheet" href="{{ "css/site-overrides.css" | relURL }}">
+  <link rel="stylesheet" href="{{ "css/colors.css" | relURL }}?v=36">
+  <link rel="stylesheet" href="{{ "css/dark.css" | relURL }}?v=33">
+  <link rel="stylesheet" href="{{ "css/theme.css" | relURL }}?v=27">
+  <link rel="stylesheet" href="{{ "css/background.css" | relURL }}?v=27">
+  <link rel="stylesheet" href="{{ "css/taxonomy.css" | relURL }}?v=27">
+  <link rel="stylesheet" href="{{ "css/article.css" | relURL }}?v=46">
+  <link rel="stylesheet" href="{{ "css/search.css" | relURL }}?v=27">
+  <link rel="stylesheet" href="{{ "css/site-overrides.css" | relURL }}?v=34">
+  {{ if or (.Params.math | default false) (.Page.HasShortcode "katex") }}
+    <link rel="stylesheet" href="{{ "lib/katex/katex.min.css" | relURL }}?v=1">
+  {{ end }}
   {{ if .IsHome }}{{ with .OutputFormats.Get "json" }}<link rel="alternate" type="application/json" href="{{ .RelPermalink }}">{{ end }}{{ end }}
   {{ block "head" . }}{{ end }}
 </head>
-<body class="{{ if .IsHome }}home-page{{ end }}">
+<body class="{{ if .IsHome }}home-page{{ end }}" data-code-copy="{{ site.Params.enableCodeCopy | default true }}">
   <div class="site-background" aria-hidden="true"></div>
   {{ partial "header.html" . }}
   <main>{{ block "main" . }}{{ end }}</main>
   {{ partial "footer.html" . }}
-  <script src="{{ "js/theme.js" | relURL }}?v=2" defer></script>
+  <script src="{{ "js/theme.js" | relURL }}?v=6" defer></script>
+  <script src="{{ "js/link-cards.js" | relURL }}?v=5" defer></script>
+  {{ if or (.Params.math | default false) (.Page.HasShortcode "katex") }}
+    <script src="{{ "lib/katex/katex.min.js" | relURL }}?v=1" defer></script>
+    <script src="{{ "lib/katex/auto-render.min.js" | relURL }}?v=1" defer></script>
+    <script src="{{ "js/katex-render.js" | relURL }}?v=1" defer></script>
+  {{ end }}
 </body>
 </html>

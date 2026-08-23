@@ -1,9 +1,24 @@
-{{ with .Params.series }}
-  <aside class="article-series" aria-label="文章选集">
-    <span class="article-series-label">选集</span>
-    {{ range . }}
-      {{ $name := . }}
-      <a href="{{ printf "series/%s/" ($name | urlize) | relURL }}">{{ $name }}</a>
-    {{ end }}
-  </aside>
+{{ if .Params.series }}
+  {{ $seriesName := index .Params.series 0 }}
+  {{ $seriesKey := lower $seriesName }}
+  <details class="article-series" aria-label="文章选集"{{ if .Params.seriesOpened }} open{{ end }}>
+    <summary class="article-series-summary">
+      {{ if hasPrefix (lower .Page.Language.Lang) "zh" }}
+        {{ $seriesName }} - 这篇文章属于一个选集。
+      {{ else }}
+        {{ $seriesName }} - This article is part of a series.
+      {{ end }}
+    </summary>
+    <div class="article-series-list">
+      {{ range $post := sort (index site.Taxonomies.series $seriesKey) "Params.series_order" }}
+        <div class="article-series-item{{ if eq $post.Permalink $.Permalink }} is-current{{ end }}">
+          {{ if eq $post.Permalink $.Permalink }}
+            第 {{ $post.Params.series_order }} 篇：本文
+          {{ else }}
+            <a href="{{ $post.RelPermalink }}">第 {{ $post.Params.series_order }} 篇：{{ $post.Title }}</a>
+          {{ end }}
+        </div>
+      {{ end }}
+    </div>
+  </details>
 {{ end }}

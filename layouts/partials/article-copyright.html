@@ -1,15 +1,26 @@
 {{ $enabled := .Params.showArticleCopyright | default (site.Params.article.showArticleCopyright | default true) }}
 {{ if $enabled }}
-  {{ $author := .Params.copyrightAuthor | default (site.Params.article.copyrightAuthor | default site.Params.Author.name) }}
-  {{ $license := .Params.copyrightLicense | default (site.Params.article.copyrightLicense | default "保留所有权利") }}
-  {{ $notice := .Params.copyrightNotice | default (site.Params.article.copyrightNotice | default "除特别声明外，本站文章均为原创内容。未经许可，禁止转载、摘编或用于商业用途。") }}
+  {{ $isChinese := hasPrefix (lower .Page.Language.Lang) "zh" }}
+  {{ $title := cond $isChinese "版权声明" "Copyright" }}
+  {{ $authorLabel := cond $isChinese "作者" "Author" }}
+  {{ $linkLabel := cond $isChinese "文章链接" "Article Link" }}
+  {{ $licenseLabel := cond $isChinese "版权许可" "License" }}
+  {{ $noticeLabel := cond $isChinese "说明" "Notice" }}
+  {{ $defaultLicense := cond $isChinese "保留所有权利" "All rights reserved" }}
+  {{ $defaultNotice := cond $isChinese "除特别声明外，本站文章均为原创内容。未经许可，禁止转载、摘编或用于商业用途。" "Unless otherwise stated, this article is original content. Reproduction, adaptation, or commercial use is not allowed without permission." }}
+  {{ $author := .Params.copyrightAuthor | default (site.Params.article.copyrightAuthor | default (site.Params.Author.name | default site.Title)) }}
+  {{ $license := .Params.copyrightLicense | default (site.Params.article.copyrightLicense | default $defaultLicense) }}
+  {{ $licenseLink := .Params.copyrightLicenseLink | default (site.Params.article.copyrightLicenseLink | default "") }}
+  {{ $notice := .Params.copyrightNotice | default (site.Params.article.copyrightNotice | default $defaultNotice) }}
   <aside class="article-copyright">
-    <h2>版权声明</h2>
+    <h2 class="article-copyright-title">{{ $title }}</h2>
     <dl>
-      <div><dt>作者</dt><dd>{{ $author }}</dd></div>
-      <div><dt>文章链接</dt><dd><a href="{{ .Permalink }}">{{ .Permalink }}</a></dd></div>
-      <div><dt>版权许可</dt><dd>{{ $license }}</dd></div>
-      <div><dt>说明</dt><dd>{{ $notice }}</dd></div>
+      <div><dt class="article-copyright-label">{{ $authorLabel }}</dt><dd class="article-copyright-text">{{ $author }}</dd></div>
+      <div><dt class="article-copyright-label">{{ $linkLabel }}</dt><dd class="article-copyright-text"><a href="{{ .Permalink }}">{{ .Permalink }}</a></dd></div>
+      <div><dt class="article-copyright-label">{{ $licenseLabel }}</dt><dd class="article-copyright-text">
+        {{ if $licenseLink }}<a href="{{ $licenseLink }}" target="_blank" rel="noopener noreferrer">{{ $license }}</a>{{ else }}{{ $license }}{{ end }}
+      </dd></div>
+      <div><dt class="article-copyright-label">{{ $noticeLabel }}</dt><dd class="article-copyright-note">{{ $notice | markdownify }}</dd></div>
     </dl>
   </aside>
 {{ end }}

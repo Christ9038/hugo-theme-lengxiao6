@@ -1,0 +1,20 @@
+{{- $service := lower . -}}
+{{- if eq $service "xiaohongshu" -}}
+<span class="social-icon social-icon-redbook" aria-hidden="true"></span>
+{{- else if eq $service "github" -}}
+<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.21.68-.48v-1.7c-2.78.61-3.37-1.18-3.37-1.18-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.9 1.54 2.36 1.09 2.93.83.09-.65.35-1.09.64-1.34-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02A9.56 9.56 0 0 1 12 6.8c.85 0 1.7.11 2.49.34 1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.35 4.69-4.58 4.93.36.31.68.9.68 1.81v2.68c0 .27.18.58.69.48A10 10 0 0 0 12 2Z"/></svg>
+{{- else if eq $service "telegram" -}}
+<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M21.45 3.25 2.97 10.37c-1.26.5-1.25 1.2-.23 1.52l4.74 1.48 1.83 5.62c.22.61.11.86.76.86.5 0 .72-.23 1-.5l2.32-2.26 4.83 3.57c.89.49 1.53.24 1.75-.83l3.15-14.86c.33-1.31-.5-1.9-1.67-1.72ZM8.22 13.03l10.98-6.93c.55-.33 1.05-.15.63.22l-9.4 8.49-.37 3.96-1.84-5.74Z"/></svg>
+{{- else if eq $service "bilibili" -}}
+<span class="social-icon social-icon-bilibili" aria-hidden="true"></span>
+{{- else if eq $service "douyin" -}}
+<span class="social-icon social-icon-douyin" aria-hidden="true"></span>
+{{- else if eq $service "youtube" -}}
+<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M23.5 6.2a3 3 0 0 0-2.1-2.12C19.54 3.58 12 3.58 12 3.58s-7.54 0-9.4.5A3 3 0 0 0 .5 6.2 31.17 31.17 0 0 0 0 12a31.17 31.17 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.12c1.86.5 9.4.5 9.4.5s7.54 0 9.4-.5a3 3 0 0 0 2.1-2.12A31.17 31.17 0 0 0 24 12a31.17 31.17 0 0 0-.5-5.8ZM9.6 15.56V8.44L15.86 12 9.6 15.56Z"/></svg>
+{{- else if or (eq $service "x") (eq $service "twitter") -}}
+<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M18.9 2H22l-6.78 7.75L23.2 22h-6.25l-4.9-7.1L5.84 22H2.72l7.25-8.3L2.32 2h6.4l4.42 6.47L18.9 2Zm-1.1 18h1.73L7.78 3.9H5.92L17.8 20Z"/></svg>
+{{- else if eq $service "xiaohongshu" -}}
+<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M4 3h16a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Zm2.3 5.26c-.88 0-1.5.48-1.5 1.24 0 .82.6 1.13 1.33 1.37.56.18.77.29.77.54 0 .2-.16.34-.46.34-.4 0-.82-.18-1.1-.39l-.46.77c.4.32.98.52 1.55.52.94 0 1.58-.47 1.58-1.32 0-.8-.53-1.12-1.38-1.39-.54-.17-.74-.28-.74-.52 0-.2.16-.31.42-.31.35 0 .7.14.96.33l.43-.78a2.2 2.2 0 0 0-1.4-.4Zm4.92.08-1.6 4.5h1.12l.25-.78h1.52l.25.78h1.15l-1.6-4.5h-1.05Zm.5 1.1.48 1.56h-.96l.48-1.56Zm4.19-1.1v4.5h1.09v-1.52h.8c1.06 0 1.71-.55 1.71-1.5 0-.95-.65-1.48-1.71-1.48h-1.97Zm1.09.91h.78c.47 0 .75.2.75.58 0 .39-.28.6-.75.6H17V9.25ZM7.32 14.37v4.5h1.1v-1.58h.59l.83 1.58h1.23l-1.05-1.79c.58-.24.92-.74.92-1.4 0-.94-.63-1.5-1.68-1.5H7.32Zm1.1.9h.78c.45 0 .72.2.72.57 0 .39-.27.6-.72.6h-.78v-1.17Zm4.05-.9v4.5h1.1v-4.5h-1.1Zm2.18 0v4.5h3.25v-.9h-2.16v-.95h1.9v-.87h-1.9v-.88h2.08v-.9h-3.17Z"/></svg>
+{{- else -}}
+<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M8 12h8M12 8v8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+{{- end -}}

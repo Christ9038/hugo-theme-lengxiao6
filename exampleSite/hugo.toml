@@ -1,7 +1,8 @@
 baseURL = "http://localhost:1313/"
 languageCode = "zh-cn"
 title = "六叔资源站"
-theme = "hugo-theme-lengxiao6"
+theme = "hugo-theme"
+themesDir = "../.."
 enableRobotsTXT = true
 
 [taxonomies]
@@ -12,6 +13,21 @@ enableRobotsTXT = true
 
 [outputs]
   home = ["HTML", "RSS", "JSON"]
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.extensions]
+      [markup.goldmark.extensions.passthrough]
+        enable = true
+        [markup.goldmark.extensions.passthrough.delimiters]
+          block = [['\\[', '\\]'], ['$$', '$$']]
+          inline = [['$', '$'], ['\\(', '\\)']]
+    [markup.goldmark.renderer]
+      unsafe = true
+  [markup.highlight]
+    noClasses = false
+    lineNos = true
+    lineNumbersInTable = true
 
 [params]
   description = "探索 AI 与科技，分享实践和方法。"
@@ -35,13 +51,26 @@ enableRobotsTXT = true
     eyebrow = "AI · 科技 · 实践"
     title = "记录实践，分享方法"
     description = "一个安静、清晰、适合长期积累的中文内容空间。"
+    bannerInterval = 4600
     [[params.home.banners]]
-      image = "img/banner.svg"
+      image = "img/banner-ai.jpg"
       title = "探索 AI 与科技"
       description = "记录实践，分享方法"
-      link = "/posts/"
+      link = "/categories/AI/"
+    [[params.home.banners]]
+      image = "img/banner-workflow.jpg"
+      title = "把工具变成工作流"
+      description = "从一个问题开始，找到可复用的路径"
+      link = "/posts/ai-workflow/"
+    [[params.home.banners]]
+      image = "img/banner-system.jpg"
+      title = "建立长期积累的系统"
+      description = "让内容、工具和经验持续沉淀"
+      link = "/posts/side-hustle/"
     [[params.home.sections]]
       key = "featured"
+      source = "manual"
+      order = 10
       title = "精选文章"
       description = "值得优先阅读的内容"
       href = "/posts/"
@@ -49,11 +78,23 @@ enableRobotsTXT = true
       layout = "featured"
     [[params.home.sections]]
       key = "ai"
+      source = "category"
+      category = "AI"
+      order = 20
       title = "AI 实践"
       description = "AI 工具、教程与实践记录"
       href = "/categories/AI/"
       limit = 6
       layout = "grid"
+    [[params.home.sections]]
+      key = "recent"
+      source = "recent"
+      order = 90
+      title = "最近的文章"
+      description = "按时间浏览最新发布的内容"
+      href = "/posts/"
+      limit = 6
+      layout = "featured"
 
 [permalinks]
   posts = "/posts/:slug/"

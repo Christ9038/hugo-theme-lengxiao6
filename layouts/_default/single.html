@@ -13,7 +13,8 @@
             {{ with .headline }}<small>{{ . }}</small>{{ end }}
             {{ with .links }}
               <div class="article-author-links">
-                {{ range . }}{{ range $service, $url := . }}<a href="{{ $url }}" target="_blank" rel="me noopener noreferrer">{{ $service }}</a>{{ end }}{{ end }}
+                {{ $labels := dict "telegram" "Telegram" "github" "GitHub" "bilibili" "B站" "douyin" "抖音" "xiaohongshu" "小红书" "youtube" "YouTube" "x" "X" "twitter" "X" }}
+                {{ range . }}{{ range $service, $url := . }}{{ $label := default $service (index $labels (lower $service)) }}<a href="{{ $url }}" target="_blank" rel="me noopener noreferrer" aria-label="{{ $label }}" title="{{ $label }}">{{ partial "social-icon.html" $service }}</a>{{ end }}{{ end }}
               </div>
             {{ end }}
           </div>

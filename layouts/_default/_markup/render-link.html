@@ -1,0 +1,65 @@
+{{- $destination := .Destination -}}
+{{- $parsed := urls.Parse $destination -}}
+{{- $host := lower $parsed.Host -}}
+{{- $path := strings.Trim $parsed.Path "/" -}}
+{{- $parts := split $path "/" -}}
+{{- $isGithub := or (eq $host "github.com") (hasSuffix $host ".github.com") -}}
+{{- $isYdisks := or (eq $host "t.ydisks.cn") (eq $host "ydisks.cn") -}}
+{{- $isBaiduPan := eq $host "pan.baidu.com" -}}
+{{- $isQuarkPan := eq $host "pan.quark.cn" -}}
+{{- $isXunleiPan := eq $host "pan.xunlei.com" -}}
+{{- $isCard := or $isGithub $isYdisks $isBaiduPan $isQuarkPan $isXunleiPan -}}
+{{- if $isCard -}}
+  {{- $type := "ydisks" -}}
+  {{- $domain := $host -}}
+  {{- $linkText := .Text | plainify -}}
+  {{- $title := $linkText -}}
+  {{- $hasCustomTitle := and $title (ne $title $destination) -}}
+  {{- if not $hasCustomTitle }}{{ $title = "云盘资源" }}{{ end -}}
+  {{- $description := "" -}}
+  {{- $preview := "" -}}
+  {{- $logo := "" -}}
+  {{- $owner := "" -}}
+  {{- $repo := "" -}}
+  {{- if and $isGithub (ge (len $parts) 2) -}}
+    {{- $type = "github" -}}
+    {{- $domain = "github.com" -}}
+    {{- $owner = index $parts 0 -}}
+    {{- $repo = index $parts 1 -}}
+    {{- $title = printf "%s/%s" $owner $repo -}}
+    {{- $description = "GitHub 仓库" -}}
+    {{- $preview = printf "https://opengraph.githubassets.com/0/%s/%s" $owner $repo -}}
+  {{- else if $isYdisks -}}
+    {{- $description = "公开资源链接" -}}
+    {{- $logo = "https://t.ydisks.cn/assets/themes/default/icon.ico" -}}
+  {{- else if $isBaiduPan -}}
+    {{- $type = "baidu-pan" -}}
+    {{- if not $hasCustomTitle }}{{ $title = "百度网盘资源" }}{{ end -}}
+    {{- $description = "百度网盘分享链接" -}}
+    {{- $logo = "svg/baidu.svg" | relURL -}}
+  {{- else if $isQuarkPan -}}
+    {{- $type = "quark-pan" -}}
+    {{- if not $hasCustomTitle }}{{ $title = "夸克网盘资源" }}{{ end -}}
+    {{- $description = "夸克网盘分享链接" -}}
+    {{- $logo = "svg/quark.svg" | relURL -}}
+  {{- else if $isXunleiPan -}}
+    {{- $type = "xunlei-pan" -}}
+    {{- if not $hasCustomTitle }}{{ $title = "迅雷网盘资源" }}{{ end -}}
+    {{- $description = "迅雷网盘分享链接" -}}
+    {{- $logo = "svg/xunlei.svg" | relURL -}}
+  {{- end -}}
+  <a class="link-card link-card--{{ $type }}" href="{{ $destination }}" target="_blank" rel="noopener noreferrer" data-link-card="{{ $type }}" data-link-card-url="{{ $destination }}" data-link-card-title="{{ $title }}" data-link-card-description="{{ $description }}" data-link-card-custom-title="{{ $hasCustomTitle }}"{{ with $owner }} data-link-card-owner="{{ . }}"{{ end }}{{ with $repo }} data-link-card-repo="{{ . }}"{{ end }}>
+    <span class="link-card-media">
+      {{ with $preview }}<img class="link-card-preview" src="{{ . }}" alt="" loading="lazy" referrerpolicy="no-referrer">{{ end }}
+      {{ with $logo }}<img class="link-card-logo" src="{{ . }}" alt="" loading="lazy" referrerpolicy="no-referrer">{{ end }}
+    </span>
+    <span class="link-card-body">
+      <span class="link-card-kicker"><span class="link-card-external-icon" aria-hidden="true">↗</span><span data-link-card-domain>{{ $domain }}</span></span>
+      <strong class="link-card-title" data-link-card-title-text>{{ $title }}</strong>
+      <span class="link-card-description" data-link-card-description-text>{{ $description }}</span>
+      <span class="link-card-footer"><span class="link-card-url">{{ $destination }}</span><span class="link-card-stat" data-link-card-stat hidden></span></span>
+    </span>
+  </a>
+{{- else -}}
+  <a href="{{ $destination }}"{{ with .Title }} title="{{ . }}"{{ end }}>{{ .Text }}</a>
+{{- end -}}

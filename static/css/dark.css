@@ -1,65 +1,81 @@
+/* Dark mode only selects the dark palette defined in colors.css. */
 html[data-theme="dark"] {
-  --bg: #18181a;
-  --surface: rgba(31, 31, 34, 0.78);
-  --muted-surface: rgba(39, 39, 42, 0.74);
-  --text: #f5f5f7;
-  --muted: #a1a1a6;
-  --line: rgba(255, 255, 255, 0.14);
-  --soft: rgba(255, 255, 255, 0.09);
-  --shadow: 0 4px 24px rgba(0, 0, 0, 0.22);
-}
-
-html[data-theme="dark"],
-html[data-theme="dark"] body {
-  background: var(--bg);
-  color: var(--text);
-}
-
-html[data-theme="dark"] .site-header {
-  background: rgba(24, 24, 26, 0.82);
-}
-
-html[data-theme="dark"] .search-link,
-html[data-theme="dark"] .icon-button,
-html[data-theme="dark"] .button,
-html[data-theme="dark"] .content-section,
-html[data-theme="dark"] .article-card,
-html[data-theme="dark"] .category-nav,
-html[data-theme="dark"] .article-series,
-html[data-theme="dark"] .article-copyright {
-  background: var(--surface);
-}
-
-html[data-theme="dark"] .banner-fallback {
-  background: var(--muted-surface);
-}
-
-html[data-theme="dark"] .button.primary {
-  background: #f5f5f7;
-  color: #1d1d1f;
-}
-
-html[data-theme="dark"] .article-content a {
-  color: #b2c7ff;
-  text-decoration-color: rgba(178, 199, 255, 0.44);
-}
-
-html[data-theme="dark"] .article-content blockquote {
-  border-color: #77777d;
-}
-
-html[data-theme="dark"] .article-content pre {
-  background: #111113;
-}
-
-html[data-theme="dark"] .article-content code {
-  background: rgba(255, 255, 255, 0.12);
-}
-
-html[data-theme="dark"] .article-content th {
-  background: rgba(255, 255, 255, 0.1);
-}
-
-html[data-theme="dark"] .article-copyright a {
-  color: var(--text);
+  --bg: var(--dark-bg);
+  --surface: var(--dark-surface);
+  --menu-surface: var(--dark-menu-surface);
+  --muted-surface: var(--dark-muted-surface);
+  --text: var(--dark-text);
+  --text-strong: var(--dark-text-strong);
+  --text-secondary: var(--dark-text-secondary);
+  --text-nav: var(--dark-text-nav);
+  --text-subtle: var(--dark-text-subtle);
+  --text-inverse: var(--dark-text-inverse);
+  --muted: var(--dark-muted);
+  --line: var(--dark-line);
+  --line-strong: var(--dark-line-strong);
+  --line-hover: var(--dark-line-hover);
+  --soft: var(--dark-soft);
+  --accent: var(--dark-accent);
+  --accent-hover: var(--dark-accent-hover);
+  --accent-active: var(--dark-accent-active);
+  --accent-idle: var(--dark-accent-idle);
+  --accent-tag: var(--dark-accent-tag);
+  --accent-text: var(--dark-accent-text);
+  --accent-soft: var(--dark-accent-soft);
+  --social: var(--dark-social);
+  --banner: var(--dark-banner);
+  --banner-fallback: var(--dark-banner-fallback);
+  --glass: var(--dark-glass);
+  --glass-soft: var(--dark-glass-soft);
+  --glass-series: var(--dark-glass-series);
+  --copyright-surface: var(--dark-copyright-surface);
+  --copyright-border: var(--dark-copyright-border);
+  --copyright-title: var(--dark-copyright-title);
+  --copyright-label: var(--dark-copyright-label);
+  --copyright-text: var(--dark-copyright-text);
+  --copyright-note: var(--dark-copyright-note);
+  --copyright-shadow: var(--dark-copyright-shadow);
+  --series-surface: var(--dark-series-surface);
+  --series-heading: var(--dark-series-heading);
+  --series-text: var(--dark-series-text);
+  --series-link: var(--dark-series-link);
+  --series-border: var(--dark-series-border);
+  --white-soft: var(--dark-white-soft);
+  --white-border: var(--dark-white-border);
+  --shadow: var(--dark-shadow);
+  --shadow-card: var(--dark-shadow-card);
+  --shadow-hero: var(--dark-shadow-hero);
+  --shadow-text: var(--dark-shadow-text);
+  --heading-shadow-1: var(--dark-heading-shadow-1);
+  --heading-shadow-2: var(--dark-heading-shadow-2);
+  --heading-shadow-3: var(--dark-heading-shadow-3);
+  --focus: var(--dark-focus);
+  --link: var(--dark-link);
+  --link-hover: var(--dark-link-hover);
+  --link-decoration: var(--dark-link-decoration);
+  --blockquote: var(--dark-blockquote);
+  --blockquote-text: var(--dark-blockquote-text);
+  --mark-bg: var(--dark-mark-bg);
+  --mark-text: var(--dark-mark-text);
+  --code-bg: var(--dark-code-bg);
+  --code-bg-strong: var(--dark-code-bg-strong);
+  --code-border: var(--dark-code-border);
+  --code-text: var(--dark-code-text);
+  --code-muted: var(--dark-code-muted);
+  --code-keyword: var(--dark-code-keyword);
+  --code-function: var(--dark-code-function);
+  --code-string: var(--dark-code-string);
+  --code-number: var(--dark-code-number);
+  --code-operator: var(--dark-code-operator);
+  --code-comment: var(--dark-code-comment);
+  --code-highlight: var(--dark-code-highlight);
+  --shadow-code: var(--dark-shadow-code);
+  --task-checkbox-unchecked-background: var(--dark-task-checkbox-unchecked-background);
+  --task-checkbox-unchecked-border: var(--dark-task-checkbox-unchecked-border);
+  --link-card-surface: var(--dark-link-card-surface);
+  --link-card-media: var(--dark-link-card-media);
+  --link-card-icon-surface: var(--dark-link-card-icon-surface);
+  --link-card-title: var(--dark-link-card-title);
+  --link-card-description: var(--dark-link-card-description);
+  --transparent: var(--dark-transparent);
 }

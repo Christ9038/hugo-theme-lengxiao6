@@ -1,5 +1,15 @@
+{{ $lightFallback := site.Params.defaultFeaturedImageLight | default site.Params.defaultFeaturedImage | default "img/featured-light.svg" }}
+{{ $darkFallback := site.Params.defaultFeaturedImageDark | default site.Params.defaultFeaturedImage | default "img/featured-dark.svg" }}
+{{ $initialFallback := $lightFallback }}
+{{ if eq (site.Params.defaultAppearance | default "light") "dark" }}{{ $initialFallback = $darkFallback }}{{ end }}
 <article class="article-card">
-  {{ with .Params.featuredImage }}<a class="card-image" href="{{ $.RelPermalink }}"><img src="{{ . | relURL }}" alt="" loading="lazy"></a>{{ end }}
+  <a class="card-image" href="{{ .RelPermalink }}">
+    {{ with .Params.featuredImage }}
+      <img src="{{ . | relURL }}" alt="{{ $.Title }}" loading="lazy">
+    {{ else }}
+      <img class="card-image-default" data-theme-image data-light-src="{{ $lightFallback | relURL }}" data-dark-src="{{ $darkFallback | relURL }}" src="{{ $initialFallback | relURL }}" alt="" loading="lazy">
+    {{ end }}
+  </a>
   <div class="card-body">
     <div class="card-meta"><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "01-02" }}</time>{{ with index .Params.articleType 0 }}<span>{{ . }}</span>{{ end }}</div>
     <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>

@@ -4,7 +4,7 @@
 {{ if eq .Data.Plural "authors" }}{{ $label = "作者" }}{{ end }}
 <div class="shell page-heading taxonomy-heading"><p class="eyebrow">{{ upper .Data.Plural }}</p><h1>{{ .Title }}</h1><p>{{ .Description | default (printf "按%s浏览站点内容。" $label) }}</p></div>
 <div class="shell taxonomy-layout">
-  <aside class="category-nav taxonomy-nav"><p>{{ $label }}导航</p>{{ range .Data.Terms.ByCount }}<a href="{{ .Page.RelPermalink }}"><span>{{ .Page.Title }}</span><span>{{ .Count }}</span></a>{{ end }}</aside>
+  <aside class="category-nav taxonomy-nav"><p>{{ $label }}导航</p>{{ range $index, $term := .Data.Terms.ByCount }}<a href="{{ $term.Page.RelPermalink }}"><span class="taxonomy-nav-name"><span class="taxonomy-nav-index">{{ add $index 1 }}.</span><span>{{ $term.Page.Title }}</span></span><span class="taxonomy-nav-count">{{ $term.Count }} {{ if hasPrefix (lower $.Page.Language.Lang) "zh" }}项{{ else }}items{{ end }}</span></a>{{ end }}</aside>
   <div class="taxonomy-groups">
     {{ range .Data.Terms.ByCount }}
       <section class="post-group taxonomy-group">

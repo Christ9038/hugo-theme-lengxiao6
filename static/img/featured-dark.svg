@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="210" y1="120" x2="1420" y2="860" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#061522"/>
+      <stop offset="0.5" stop-color="#0a2238"/>
+      <stop offset="1" stop-color="#123754"/>
+    </linearGradient>
+    <radialGradient id="blobA" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(0.45 0.45) scale(1)">
+      <stop offset="0" stop-color="#d2f6ff"/>
+      <stop offset="0.55" stop-color="#0094f7" stop-opacity="0.72"/>
+      <stop offset="1" stop-color="#0094f7" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="blobB" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(0.5 0.5) scale(1)">
+      <stop offset="0" stop-color="#a9e6ff"/>
+      <stop offset="0.5" stop-color="#0071e3" stop-opacity="0.68"/>
+      <stop offset="1" stop-color="#0071e3" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="blobC" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(0.5 0.5) scale(1)">
+      <stop offset="0" stop-color="#c0f2ff"/>
+      <stop offset="0.5" stop-color="#0094f7" stop-opacity="0.56"/>
+      <stop offset="1" stop-color="#0094f7" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="blurXL" x="-25%" y="-25%" width="150%" height="150%">
+      <feGaussianBlur stdDeviation="78"/>
+    </filter>
+    <linearGradient id="ring" x1="1010" y1="110" x2="1370" y2="470" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#d5f7ff"/>
+      <stop offset="1" stop-color="#0094f7"/>
+    </linearGradient>
+    <linearGradient id="line" x1="240" y1="630" x2="1320" y2="790" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0071e3" stop-opacity="0.16"/>
+      <stop offset="0.5" stop-color="#65c8ff" stop-opacity="0.42"/>
+      <stop offset="1" stop-color="#0057a8" stop-opacity="0.16"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <g filter="url(#blurXL)" opacity="0.95">
+    <ellipse cx="340" cy="230" rx="300" ry="190" fill="url(#blobA)">
+      <animate attributeName="cx" values="340;398;340" dur="18s" repeatCount="indefinite"/>
+      <animate attributeName="cy" values="230;272;230" dur="18s" repeatCount="indefinite"/>
+    </ellipse>
+    <ellipse cx="1180" cy="290" rx="340" ry="220" fill="url(#blobB)">
+      <animate attributeName="cx" values="1180;1124;1180" dur="22s" repeatCount="indefinite"/>
+      <animate attributeName="cy" values="290;250;290" dur="22s" repeatCount="indefinite"/>
+    </ellipse>
+    <ellipse cx="860" cy="690" rx="420" ry="240" fill="url(#blobC)">
+      <animate attributeName="cx" values="860;902;860" dur="20s" repeatCount="indefinite"/>
+      <animate attributeName="cy" values="690;648;690" dur="20s" repeatCount="indefinite"/>
+    </ellipse>
+  </g>
+  <g fill="none" stroke-linecap="round">
+    <circle cx="1180" cy="280" r="182" stroke="url(#ring)" stroke-opacity="0.34" stroke-width="3">
+      <animateTransform attributeName="transform" type="rotate" from="0 1180 280" to="360 1180 280" dur="32s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="1180" cy="280" r="118" stroke="#8bd8ff" stroke-opacity="0.38" stroke-width="2">
+      <animate attributeName="r" values="112;126;112" dur="10s" repeatCount="indefinite"/>
+    </circle>
+    <path d="M140 640C286 598 430 590 570 614C728 642 876 716 1040 724C1192 732 1322 686 1468 648" stroke="url(#line)" stroke-width="6">
+      <animateTransform attributeName="transform" type="translate" values="0 0;24 -10;0 0" dur="14s" repeatCount="indefinite"/>
+    </path>
+    <path d="M180 720C320 694 456 696 606 720C760 744 902 796 1052 804C1182 810 1308 778 1448 742" stroke="#8bd8ff" stroke-opacity="0.28" stroke-width="3">
+      <animateTransform attributeName="transform" type="translate" values="0 0;-18 8;0 0" dur="12s" repeatCount="indefinite"/>
+    </path>
+  </g>
+</svg>
