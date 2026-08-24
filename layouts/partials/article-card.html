@@ -5,7 +5,12 @@
 <article class="article-card">
   <a class="card-image" href="{{ .RelPermalink }}">
     {{ with .Params.featuredImage }}
-      <img src="{{ . | relURL }}" alt="{{ $.Title }}" loading="lazy">
+      {{ $featuredImage := $.Resources.GetMatch . }}
+      {{ if $featuredImage }}
+        <img src="{{ $featuredImage.RelPermalink }}" alt="{{ $.Title }}" loading="lazy">
+      {{ else }}
+        <img src="{{ . | relURL }}" alt="{{ $.Title }}" loading="lazy">
+      {{ end }}
     {{ else }}
       <img class="card-image-default" data-theme-image data-light-src="{{ $lightFallback | relURL }}" data-dark-src="{{ $darkFallback | relURL }}" src="{{ $initialFallback | relURL }}" alt="" loading="lazy">
     {{ end }}
