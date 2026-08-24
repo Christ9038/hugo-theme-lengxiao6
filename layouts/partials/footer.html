@@ -1,10 +1,37 @@
 <footer class="site-footer">
   <div class="shell footer-inner">
-    <div class="footer-copyright">© {{ now.Year }} {{ site.Title }}</div>
-    <div class="footer-records">
-      {{ with site.Params.footer.icp }}<a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer">{{ . }}</a>{{ end }}
-      {{ with site.Params.footer.publicSecurity }}<a class="footer-security-link" href="{{ site.Params.footer.publicSecurityUrl | default "https://beian.mps.gov.cn/" }}" target="_blank" rel="noopener noreferrer"><img src="{{ "img/police.png" | relURL }}" alt="" aria-hidden="true">{{ . }}</a>{{ end }}
-      {{ with site.Params.footer.text }}<span>{{ . }}</span>{{ end }}
+    {{ with site.Params.footer.links }}
+      <section class="footer-links" aria-labelledby="footer-links-title">
+        <div class="footer-links-heading">
+          <div>
+            <p class="eyebrow">FRIEND LINKS</p>
+            <h2 id="footer-links-title">友情链接</h2>
+          </div>
+          <span class="footer-links-note">交换灵感，彼此照亮</span>
+        </div>
+        <div class="footer-links-grid">
+          {{ range . }}
+            <a class="footer-link-card" href="{{ .url }}" target="_blank" rel="noopener noreferrer">
+              <span class="footer-link-avatar">
+                {{ with .avatar }}<img src="{{ . | relURL }}" alt="">{{ else }}<span aria-hidden="true">↗</span>{{ end }}
+              </span>
+              <span class="footer-link-copy">
+                <strong>{{ .name }}</strong>
+                {{ with .description }}<small>{{ . }}</small>{{ end }}
+              </span>
+              <span class="footer-link-arrow" aria-hidden="true">↗</span>
+            </a>
+          {{ end }}
+        </div>
+      </section>
+    {{ end }}
+    <div class="footer-meta">
+      <div class="footer-copyright">© {{ now.Year }} {{ site.Title }}</div>
+      <div class="footer-records">
+        {{ with site.Params.footer.icp }}<a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer">{{ . }}</a>{{ end }}
+        {{ with site.Params.footer.publicSecurity }}<a class="footer-security-link" href="{{ site.Params.footer.publicSecurityUrl | default "https://beian.mps.gov.cn/" }}" target="_blank" rel="noopener noreferrer"><img src="{{ "img/police.png" | relURL }}" alt="" aria-hidden="true">{{ . }}</a>{{ end }}
+        {{ with site.Params.footer.text }}<span>{{ . }}</span>{{ end }}
+      </div>
     </div>
   </div>
 </footer>

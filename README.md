@@ -159,6 +159,12 @@ Google Analytics 使用 Hugo 内置的 GA4 模板，遵从 Hugo 的 `[privacy.go
   publicSecurity = "京公网安备11000000000000号"
   publicSecurityUrl = "https://beian.mps.gov.cn/"
   text = "其他说明"
+
+  [[params.footer.links]]
+    name = "友链站点"
+    url = "https://example.com/"
+    description = "站点简介"
+    avatar = "img/friend-avatar.png"
 ```
 
 | 字段 | 作用 |
@@ -167,6 +173,7 @@ Google Analytics 使用 Hugo 内置的 GA4 模板，遵从 Hugo 的 `[privacy.go
 | `publicSecurity` | 公安备案文字，显示在下方并固定附带主题内置公安备案图标。 |
 | `publicSecurityUrl` | 公安备案链接；默认 `https://beian.mps.gov.cn/`。 |
 | `text` | 备案信息后的补充纯文本。 |
+| `links` | 页脚友情链接数组；每项支持 `name`、`url`、`description` 和可选的 `avatar`，配置后显示在备案信息上方。 |
 
 ### 文章默认设置
 
