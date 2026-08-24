@@ -415,14 +415,14 @@ $$
 
 内置短代码为 `lead`、`alert`、`badge`、`button`、`video`。`button` 的 `href` 为必填链接地址，`target` 为可选链接目标；其他短代码只接收正文。
 
-`video` 从当前文章 Page Bundle 读取本地视频文件。`src` 必填，也可以使用位置参数；`poster`、`preload`、`type`、`autoplay`、`loop` 和 `muted` 可选：
+`video` 从当前文章 Page Bundle 读取本地视频文件。`src` 必填，也可以使用位置参数；`poster`、`caption`、`preload`、`type`、`autoplay`、`loop` 和 `muted` 可选。该 shortcode 不需要正文内容，因此旧文章中的未自闭合写法也可以继续使用：
 
 ```markdown
-{{< video src="demo.mp4" />}}
+{{< video src="demo.mp4" >}}
 
-{{< video src="demo.mp4" poster="cover.jpg" preload="metadata" />}}
+{{< video src="demo.mp4" poster="cover.jpg" caption="演示视频" preload="metadata" >}}
 
-{{< video src="demo.mp4" autoplay="true" loop="true" muted="true" />}}
+{{< video src="demo.mp4" autoplay="true" loop="true" muted="true" >}}
 ```
 
 视频文件和封面图应与文章的 `index.md` 放在同一目录中。主题会将资源发布到该文章页面，并输出带控制条、移动端内联播放和自适应宽度的 HTML5 播放器。
