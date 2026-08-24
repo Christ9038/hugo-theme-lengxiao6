@@ -69,6 +69,32 @@ enableRobotsTXT = true
 
 `pageRef = "posts"` 会被主题忽略，避免与固定的“文章”入口重复。
 
+## 站点统计
+
+主题支持 Google Analytics 4 与百度统计。两项都是可选配置，留空或不配置时不会输出任何统计脚本。
+
+```toml
+# Google Analytics 4 测量 ID。使用 G- 开头的 GA4 ID。
+[services.googleAnalytics]
+  id = "G-XXXXXXXXXX"
+
+# 百度统计站点 ID，即统计代码中 hm.js? 后面的值。
+[params.baiduAnalytics]
+  siteId = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+```
+
+Google Analytics 使用 Hugo 内置的 GA4 模板，遵从 Hugo 的 `[privacy.googleAnalytics]` 隐私设置。需要尊重浏览器的 Do Not Track 时，可以这样配置：
+
+```toml
+[privacy.googleAnalytics]
+  disable = false
+  respectDoNotTrack = true
+```
+
+已废弃的 `UA-` Universal Analytics ID 不会输出。百度统计脚本由主题在页面 `<head>` 中异步加载。两项统计脚本都由 `layouts/partials/analytics.html` 统一加载，并在 `layouts/_default/baseof.html` 中应用到所有页面。
+
+本地开发时如果不想产生统计数据，保持两个 ID 为空即可。主题不会根据 `hugo server` 或构建环境自动屏蔽已配置的统计代码；配置了真实 ID 后，开发预览页面也会加载对应脚本。
+
 ## 全站 Params
 
 以下是 `[params]` 直接支持的全部顶层字段：
@@ -387,7 +413,19 @@ $$
 {{< button href="https://example.com" target="_blank" >}}外部链接{{< /button >}}
 ```
 
-内置短代码为 `lead`、`alert`、`badge`、`button`。`button` 的 `href` 为必填链接地址，`target` 为可选链接目标；其他短代码只接收正文。
+内置短代码为 `lead`、`alert`、`badge`、`button`、`video`。`button` 的 `href` 为必填链接地址，`target` 为可选链接目标；其他短代码只接收正文。
+
+`video` 从当前文章 Page Bundle 读取本地视频文件。`src` 必填，也可以使用位置参数；`poster`、`preload`、`type`、`autoplay`、`loop` 和 `muted` 可选：
+
+```markdown
+{{< video src="demo.mp4" />}}
+
+{{< video src="demo.mp4" poster="cover.jpg" preload="metadata" />}}
+
+{{< video src="demo.mp4" autoplay="true" loop="true" muted="true" />}}
+```
+
+视频文件和封面图应与文章的 `index.md` 放在同一目录中。主题会将资源发布到该文章页面，并输出带控制条、移动端内联播放和自适应宽度的 HTML5 播放器。
 
 ## 链接卡片
 

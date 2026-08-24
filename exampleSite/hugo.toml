@@ -14,6 +14,10 @@ enableRobotsTXT = true
 [outputs]
   home = ["HTML", "RSS", "JSON"]
 
+# Google Analytics 4。填写 G-XXXXXXXXXX 后，Hugo 内置模板才会输出统计脚本。
+[services.googleAnalytics]
+  id = ""
+
 [markup]
   [markup.goldmark]
     [markup.goldmark.extensions]
@@ -31,6 +35,11 @@ enableRobotsTXT = true
 
 [params]
   description = "探索 AI 与科技，分享实践和方法。"
+
+  # 百度统计站点 ID。留空时不输出百度统计脚本。
+  [params.baiduAnalytics]
+    siteId = ""
+
   [params.Author]
     name = "不爱折腾的六叔"
     headline = "探索 AI 与科技，分享副业与生活。"

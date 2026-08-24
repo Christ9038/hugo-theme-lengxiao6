@@ -1,0 +1,12 @@
+{{ partial "google_analytics.html" . }}
+{{ with site.Params.baiduAnalytics.siteId }}
+  <script>
+    var _hmt = _hmt || [];
+    (function () {
+      var hm = document.createElement("script");
+      hm.src = "{{ printf "https://hm.baidu.com/hm.js?%s" . }}";
+      var firstScript = document.getElementsByTagName("script")[0];
+      firstScript.parentNode.insertBefore(hm, firstScript);
+    })();
+  </script>
+{{ end }}

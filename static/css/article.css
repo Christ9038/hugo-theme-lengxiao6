@@ -128,6 +128,25 @@
   min-width: 0;
 }
 
+.article-video {
+  margin: 28px 0;
+}
+
+.article-video video {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.article-video figcaption {
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 12px;
+  text-align: center;
+}
+
 .article-series {
   margin: 8px 0 20px;
   overflow: hidden;

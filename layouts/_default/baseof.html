@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="{{ "lib/katex/katex.min.css" | relURL }}?v=1">
   {{ end }}
   {{ if .IsHome }}{{ with .OutputFormats.Get "json" }}<link rel="alternate" type="application/json" href="{{ .RelPermalink }}">{{ end }}{{ end }}
+  {{ partial "analytics.html" . }}
   {{ block "head" . }}{{ end }}
 </head>
 <body class="{{ if .IsHome }}home-page{{ end }}" data-code-copy="{{ $enableCodeCopy }}">
