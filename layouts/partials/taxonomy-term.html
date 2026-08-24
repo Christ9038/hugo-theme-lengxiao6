@@ -6,5 +6,5 @@
 {{ $terms := index site.Taxonomies .Data.Plural }}
 <div class="shell taxonomy-layout">
   <aside class="category-nav taxonomy-nav"><p>{{ $label }}导航</p><a href="{{ (printf "%s/" .Data.Plural) | relURL }}"><span class="taxonomy-nav-name"><span>全部{{ $label }}</span></span></a>{{ range $index, $term := $terms.ByCount }}<a class="{{ if eq $term.Page.RelPermalink $.RelPermalink }}active{{ end }}" href="{{ $term.Page.RelPermalink }}"><span class="taxonomy-nav-name"><span class="taxonomy-nav-index">{{ add $index 1 }}.</span><span>{{ $term.Page.Title }}</span></span><span class="taxonomy-nav-count">{{ $term.Count }} {{ if hasPrefix (lower $.Page.Language.Lang) "zh" }}项{{ else }}items{{ end }}</span></a>{{ end }}</aside>
-  <section class="taxonomy-term-results"><div class="group-heading"><h2>{{ .Title }}</h2><span>{{ len .Pages }} 篇文章</span></div><div class="article-grid">{{ range .Pages.ByDate.Reverse }}{{ partial "article-card.html" . }}{{ end }}</div></section>
+  <section class="taxonomy-term-results"><div class="group-heading"><h2>{{ .Title }}</h2><span>{{ len .Pages }} 篇文章</span></div><div class="article-grid">{{ if eq .Data.Plural "series" }}{{ range .Pages.ByDate }}{{ partial "article-card.html" . }}{{ end }}{{ else }}{{ range .Pages.ByDate.Reverse }}{{ partial "article-card.html" . }}{{ end }}{{ end }}</div></section>
 </div>
