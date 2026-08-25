@@ -386,6 +386,7 @@ nav {
   grid-column: 3;
   grid-row: 1;
   align-items: flex-end;
+  flex-direction: column;
   justify-content: start;
   gap: 5px;
   justify-self: end;
