@@ -164,6 +164,8 @@ Google Analytics 使用 Hugo 内置的 GA4 模板，遵从 Hugo 的 `[privacy.go
     name = "友链站点"
     url = "https://example.com/"
     description = "站点简介"
+    # 可选；不配置时根据 url 自动加载 favicon。
+    icon = "img/friend-avatar.png"
 ```
 
 | 字段 | 作用 |
@@ -172,7 +174,7 @@ Google Analytics 使用 Hugo 内置的 GA4 模板，遵从 Hugo 的 `[privacy.go
 | `publicSecurity` | 公安备案文字，显示在下方并固定附带主题内置公安备案图标。 |
 | `publicSecurityUrl` | 公安备案链接；默认 `https://beian.mps.gov.cn/`。 |
 | `text` | 备案信息后的补充纯文本。 |
-| `links` | 页脚友情链接数组；每项支持 `name`、`url` 和可选的 `description`，配置后以紧凑文字链接形式显示在备案信息上方。 |
+| `links` | 页脚友情链接数组；每项支持 `name`、`url`、可选的 `description` 和 `icon`，配置后以紧凑文字链接形式显示在备案信息上方；未配置 `icon` 时会根据网址自动加载 favicon。 |
 
 ### 文章默认设置
 

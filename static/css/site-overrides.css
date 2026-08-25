@@ -320,8 +320,7 @@ nav {
   display: flex;
   align-items: center;
   gap: 20px;
-  padding-bottom: 18px;
-  border-bottom: 1px solid var(--line);
+  padding-bottom: 0;
 }
 
 .footer-links-heading {
@@ -354,7 +353,7 @@ nav {
 .footer-link-text {
   display: inline-flex;
   align-items: center;
-  gap: 4px;
+  gap: 6px;
   padding: 1px 12px;
   border-right: 1px solid var(--line);
   color: var(--muted);
@@ -367,19 +366,16 @@ nav {
   border-right: 0;
 }
 
-.footer-link-text span {
-  color: var(--text-subtle);
-  font-size: 11px;
-  transition: color .2s ease, transform .2s ease;
+.footer-link-icon {
+  width: 16px;
+  height: 16px;
+  flex: 0 0 16px;
+  border-radius: 3px;
+  object-fit: contain;
 }
 
-.footer-link-text:hover,
-.footer-link-text:hover span {
+.footer-link-text:hover {
   color: var(--accent);
-}
-
-.footer-link-text:hover span {
-  transform: translate(1px, -1px);
 }
 
 .footer-meta {
