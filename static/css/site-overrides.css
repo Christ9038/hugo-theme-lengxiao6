@@ -363,6 +363,13 @@ nav {
   border-left: 1px solid color-mix(in srgb, var(--line) 85%, transparent);
 }
 
+.footer-links-column-inner {
+  display: inline-flex;
+  width: max-content;
+  flex-direction: column;
+  gap: 8px;
+}
+
 .footer-links-column:first-child {
   padding-left: 0;
   border-left: 0;
@@ -370,6 +377,7 @@ nav {
 
 .footer-link-text {
   display: inline-flex;
+  width: 100%;
   align-items: center;
   gap: 6px;
   padding: 0;
@@ -475,7 +483,6 @@ nav {
   }
 
   .footer-link-text {
-    width: max-content;
     padding-left: 0;
     justify-content: flex-start;
   }

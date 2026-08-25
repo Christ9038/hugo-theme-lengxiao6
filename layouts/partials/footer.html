@@ -12,21 +12,23 @@
         <nav class="footer-links-list" aria-label="友情链接列表">
           {{ range $column := seq 0 (sub $columnCount 1) }}
             <div class="footer-links-column">
-              {{ range $row := seq 0 2 }}
-                {{ $index := add (mul $column 3) $row }}
-                {{ if lt $index $linkCount }}
-                  {{ with index $links $index }}
-                    {{ $linkURL := urls.Parse .url }}
-                    {{ $host := $linkURL.Hostname }}
-                    {{ $icon := .icon }}
-                    {{ if not $icon }}{{ $icon = printf "https://www.google.com/s2/favicons?domain=%s&sz=64" $host }}{{ end }}
-                    <a class="footer-link-text" href="{{ .url }}" target="_blank" rel="noopener noreferrer" title="{{ .description | default .name }}">
-                      <img class="footer-link-icon" src="{{ if hasPrefix $icon "http" }}{{ $icon }}{{ else }}{{ $icon | relURL }}{{ end }}" alt="" loading="lazy" aria-hidden="true">
-                      {{ .name }}
-                    </a>
+              <div class="footer-links-column-inner">
+                {{ range $row := seq 0 2 }}
+                  {{ $index := add (mul $column 3) $row }}
+                  {{ if lt $index $linkCount }}
+                    {{ with index $links $index }}
+                      {{ $linkURL := urls.Parse .url }}
+                      {{ $host := $linkURL.Hostname }}
+                      {{ $icon := .icon }}
+                      {{ if not $icon }}{{ $icon = printf "https://www.google.com/s2/favicons?domain=%s&sz=64" $host }}{{ end }}
+                      <a class="footer-link-text" href="{{ .url }}" target="_blank" rel="noopener noreferrer" title="{{ .description | default .name }}">
+                        <img class="footer-link-icon" src="{{ if hasPrefix $icon "http" }}{{ $icon }}{{ else }}{{ $icon | relURL }}{{ end }}" alt="" loading="lazy" aria-hidden="true">
+                        {{ .name }}
+                      </a>
+                    {{ end }}
                   {{ end }}
                 {{ end }}
-              {{ end }}
+              </div>
             </div>
           {{ end }}
         </nav>
