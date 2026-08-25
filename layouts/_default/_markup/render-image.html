@@ -1,0 +1,9 @@
+{{- $src := .Destination -}}
+{{- $width := "" -}}
+{{- $height := "" -}}
+{{- with .Page.Resources.GetMatch .Destination -}}
+  {{- $src = .RelPermalink -}}
+  {{- $width = .Width -}}
+  {{- $height = .Height -}}
+{{- end -}}
+<img src="{{ $src | safeURL }}" alt="{{ .Text | plainify | htmlEscape }}" loading="lazy" decoding="async"{{ with $width }} width="{{ . }}"{{ end }}{{ with $height }} height="{{ . }}"{{ end }}{{ with .Title }} title="{{ . | htmlEscape }}"{{ end }}>

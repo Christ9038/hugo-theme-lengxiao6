@@ -176,6 +176,19 @@ Google Analytics 使用 Hugo 内置的 GA4 模板，遵从 Hugo 的 `[privacy.go
 | `text` | 备案信息后的补充纯文本。 |
 | `links` | 页脚友情链接数组；每项支持 `name`、`url`、可选的 `description` 和 `icon`，配置后以紧凑文字链接形式显示在备案信息上方；未配置 `icon` 时会根据网址自动加载 favicon。 |
 
+### 技术 SEO
+
+主题自动输出以下技术 SEO 元素，无需在每篇文章中重复配置：
+
+- 页面标题、描述和 Canonical URL。
+- Open Graph 与 Twitter Card 元数据，文章封面优先使用页面资源中的 `featuredImage`。
+- 首页 `WebSite`、文章 `BlogPosting`、作者和面包屑 JSON-LD。
+- 带 sitemap 地址的 `robots.txt`，以及过滤搜索页、作者归档和空分类词条的 sitemap。
+- 搜索页、404 页和空分类词条自动使用 `noindex,follow`。
+- Markdown 图片自动补充 `loading="lazy"`、`decoding="async"`；页面资源图片还会输出宽高属性，降低布局偏移。
+
+这些能力只负责页面结构和抓取信号；文章标题、摘要、正文质量、图片 `alt` 文案以及内部链接仍需要在内容层维护。
+
 ### 文章默认设置
 
 ```toml

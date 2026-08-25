@@ -1,0 +1,58 @@
+{{- $description := .Description | default site.Params.description | plainify -}}
+{{- $title := site.Title -}}
+{{- if not .IsHome }}{{ $title = printf "%s · %s" .Title site.Title }}{{ end -}}
+{{- $image := "" -}}
+{{- with .Params.featuredImage -}}
+  {{- with $.Resources.GetMatch . -}}
+    {{- $image = .Permalink -}}
+  {{- end -}}
+  {{- if not $image }}{{ $image = . | absURL }}{{ end -}}
+{{- end -}}
+{{- if not $image }}
+  {{- $imagePath := site.Params.defaultFeaturedImage | default "img/featured-light.svg" -}}
+  {{- $image = $imagePath | absURL -}}
+{{- end -}}
+{{- $ogType := "website" -}}
+{{- if and (eq .Kind "page") (eq .Section "posts") }}{{ $ogType = "article" }}{{ end -}}
+<meta name="author" content="{{ site.Params.Author.name | default site.Title | htmlEscape }}">
+<meta property="og:title" content="{{ $title | htmlEscape }}">
+<meta property="og:description" content="{{ $description | htmlEscape }}">
+<meta property="og:url" content="{{ .Permalink }}">
+<meta property="og:site_name" content="{{ site.Title | htmlEscape }}">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:type" content="{{ $ogType }}">
+<meta property="og:image" content="{{ $image }}">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ $title | htmlEscape }}">
+<meta name="twitter:description" content="{{ $description | htmlEscape }}">
+<meta name="twitter:image" content="{{ $image }}">
+{{- if and (eq .Kind "page") (eq .Section "posts") }}
+  <meta property="article:published_time" content="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">
+  <meta property="article:modified_time" content="{{ .Lastmod.Format "2006-01-02T15:04:05Z07:00" }}">
+{{- end }}
+
+{{- $authorName := site.Params.Author.name | default site.Title -}}
+{{- $author := dict "@type" "Person" "name" $authorName "url" site.Home.Permalink -}}
+{{- $publisher := dict "@type" "Organization" "name" site.Title "url" site.Home.Permalink -}}
+{{- with site.Params.Author.image }}
+  {{- $publisher = merge $publisher (dict "logo" (dict "@type" "ImageObject" "url" (. | absURL))) -}}
+{{- end }}
+
+{{- if .IsHome }}
+  {{- $website := dict "@context" "https://schema.org" "@type" "WebSite" "name" site.Title "url" site.Home.Permalink "description" $description "inLanguage" (site.LanguageCode | default "zh-CN") -}}
+  <script type="application/ld+json">{{ $website | jsonify | safeJS }}</script>
+{{- end }}
+
+{{- if and (eq .Kind "page") (eq .Section "posts") }}
+  {{- $article := dict "@context" "https://schema.org" "@type" "BlogPosting" "headline" .Title "description" $description "url" .Permalink "mainEntityOfPage" (dict "@type" "WebPage" "@id" .Permalink) "datePublished" (.Date.Format "2006-01-02T15:04:05Z07:00") "dateModified" (.Lastmod.Format "2006-01-02T15:04:05Z07:00") "author" $author "publisher" $publisher "image" $image "inLanguage" (site.LanguageCode | default "zh-CN") -}}
+  <script type="application/ld+json">{{ $article | jsonify | safeJS }}</script>
+{{- end }}
+
+{{- $breadcrumbItems := slice (dict "@type" "ListItem" "position" 1 "name" site.Title "item" site.Home.Permalink) -}}
+{{- if and (eq .Section "posts") (not .IsHome) }}
+  {{- $postsURL := printf "%s/posts/" (strings.TrimSuffix site.Home.Permalink "/") -}}
+  {{- $breadcrumbItems = $breadcrumbItems | append (dict "@type" "ListItem" "position" 2 "name" "文章" "item" $postsURL) -}}
+{{- end }}
+{{- $breadcrumbItems = $breadcrumbItems | append (dict "@type" "ListItem" "position" (add (len $breadcrumbItems) 1) "name" .Title "item" .Permalink) -}}
+{{- $breadcrumbs := dict "@context" "https://schema.org" "@type" "BreadcrumbList" "itemListElement" $breadcrumbItems -}}
+<script type="application/ld+json">{{ $breadcrumbs | jsonify | safeJS }}</script>

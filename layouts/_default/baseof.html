@@ -8,7 +8,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{{ if .IsHome }}{{ site.Title }}{{ else if eq .Kind "404" }}页面不存在 · {{ site.Title }}{{ else }}{{ .Title }} · {{ site.Title }}{{ end }}</title>
   <meta name="description" content="{{ .Description | default site.Params.description | plainify | htmlEscape }}">
+  {{ if or (eq .Kind "404") (eq .Section "search") (and (eq .Kind "term") (eq (len .Pages) 0)) }}
+    <meta name="robots" content="noindex,follow">
+  {{ end }}
   <link rel="canonical" href="{{ .Permalink }}">
+  {{ partial "seo.html" . }}
   <link rel="stylesheet" href="{{ "css/colors.css" | relURL }}?v=36">
   <link rel="stylesheet" href="{{ "css/dark.css" | relURL }}?v=33">
   <link rel="stylesheet" href="{{ "css/theme.css" | relURL }}?v=27">
