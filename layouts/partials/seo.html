@@ -50,7 +50,7 @@
 
 {{- $breadcrumbItems := slice (dict "@type" "ListItem" "position" 1 "name" site.Title "item" site.Home.Permalink) -}}
 {{- if and (eq .Section "posts") (not .IsHome) }}
-  {{- $postsURL := printf "%s/posts/" (strings.TrimSuffix site.Home.Permalink "/") -}}
+  {{- $postsURL := "posts/" | absURL -}}
   {{- $breadcrumbItems = $breadcrumbItems | append (dict "@type" "ListItem" "position" 2 "name" "文章" "item" $postsURL) -}}
 {{- end }}
 {{- $breadcrumbItems = $breadcrumbItems | append (dict "@type" "ListItem" "position" (add (len $breadcrumbItems) 1) "name" .Title "item" .Permalink) -}}
