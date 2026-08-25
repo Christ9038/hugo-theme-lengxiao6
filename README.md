@@ -118,6 +118,13 @@ Google Analytics 使用 Hugo 内置的 GA4 模板，遵从 Hugo 的 `[privacy.go
   defaultFeaturedImageLight = "img/featured-light.svg"
   defaultFeaturedImageDark = "img/featured-dark.svg"
 
+  # 站点图标资源，可选；路径相对于 static/。
+  favicon = "favicon-32x32.png"
+  favicon16 = "favicon-16x16.png"
+  appleTouchIcon = "apple-touch-icon.png"
+  webmanifest = "site.webmanifest"
+  faviconVersion = "1"
+
   # 搜索引擎站点验证，可选；填入各平台提供的 content 值。
   [params.verification]
     google = ""

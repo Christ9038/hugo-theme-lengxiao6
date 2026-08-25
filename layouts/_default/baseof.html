@@ -13,6 +13,10 @@
   {{ end }}
   <link rel="canonical" href="{{ .Permalink }}">
   {{ partial "seo.html" . }}
+  {{ with site.Params.favicon }}<link rel="icon" type="image/png" sizes="32x32" href="{{ . | relURL }}?v={{ site.Params.faviconVersion | default "1" }}">{{ end }}
+  {{ with site.Params.favicon16 }}<link rel="icon" type="image/png" sizes="16x16" href="{{ . | relURL }}?v={{ site.Params.faviconVersion | default "1" }}">{{ end }}
+  {{ with site.Params.appleTouchIcon }}<link rel="apple-touch-icon" sizes="180x180" href="{{ . | relURL }}?v={{ site.Params.faviconVersion | default "1" }}">{{ end }}
+  {{ with site.Params.webmanifest }}<link rel="manifest" href="{{ . | relURL }}?v={{ site.Params.faviconVersion | default "1" }}">{{ end }}
   <link rel="stylesheet" href="{{ "css/colors.css" | relURL }}?v=36">
   <link rel="stylesheet" href="{{ "css/dark.css" | relURL }}?v=33">
   <link rel="stylesheet" href="{{ "css/theme.css" | relURL }}?v=27">
