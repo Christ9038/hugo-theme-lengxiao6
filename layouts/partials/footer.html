@@ -4,28 +4,35 @@
       {{ $links := . }}
       {{ $linkCount := len $links }}
       {{ $columnCount := div (add $linkCount 2) 3 }}
+      {{ $mobileColumnCount := 2 }}
+      {{ $mobileRowCount := div (add $linkCount 1) 2 }}
       <section class="footer-links" aria-labelledby="footer-links-title">
         <div class="footer-links-heading">
           <p class="eyebrow">FRIEND LINKS</p>
           <h2 id="footer-links-title">友情链接</h2>
         </div>
-        <nav class="footer-links-list" style="--footer-link-rows: {{ div (add $linkCount 1) 2 }};" aria-label="友情链接列表">
+        <nav class="footer-links-list footer-links-list--desktop" aria-label="友情链接列表">
           {{ range $column := seq 0 (sub $columnCount 1) }}
             <div class="footer-links-column">
               <div class="footer-links-column-inner">
                 {{ range $row := seq 0 2 }}
                   {{ $index := add (mul $column 3) $row }}
                   {{ if lt $index $linkCount }}
-                    {{ with index $links $index }}
-                      {{ $linkURL := urls.Parse .url }}
-                      {{ $host := $linkURL.Hostname }}
-                      {{ $icon := .icon }}
-                      {{ if not $icon }}{{ $icon = printf "https://www.google.com/s2/favicons?domain=%s&sz=64" $host }}{{ end }}
-                      <a class="footer-link-text" href="{{ .url }}" target="_blank" rel="noopener noreferrer" title="{{ .description | default .name }}">
-                        <img class="footer-link-icon" src="{{ if hasPrefix $icon "http" }}{{ $icon }}{{ else }}{{ $icon | relURL }}{{ end }}" alt="" loading="lazy" aria-hidden="true">
-                        {{ .name }}
-                      </a>
-                    {{ end }}
+                    {{ partial "footer-link.html" (index $links $index) }}
+                  {{ end }}
+                {{ end }}
+              </div>
+            </div>
+          {{ end }}
+        </nav>
+        <nav class="footer-links-list footer-links-list--mobile" aria-label="友情链接列表">
+          {{ range $column := seq 0 (sub $mobileColumnCount 1) }}
+            <div class="footer-links-column">
+              <div class="footer-links-column-inner">
+                {{ range $row := seq 0 (sub $mobileRowCount 1) }}
+                  {{ $index := add (mul $column $mobileRowCount) $row }}
+                  {{ if lt $index $linkCount }}
+                    {{ partial "footer-link.html" (index $links $index) }}
                   {{ end }}
                 {{ end }}
               </div>

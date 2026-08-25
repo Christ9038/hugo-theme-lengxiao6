@@ -1,0 +1,8 @@
+{{- $linkURL := urls.Parse .url -}}
+{{- $host := $linkURL.Hostname -}}
+{{- $icon := .icon -}}
+{{- if not $icon }}{{ $icon = printf "https://www.google.com/s2/favicons?domain=%s&sz=64" $host }}{{ end -}}
+<a class="footer-link-text" href="{{ .url }}" target="_blank" rel="noopener noreferrer" title="{{ .description | default .name }}">
+  <img class="footer-link-icon" src="{{ if hasPrefix $icon "http" }}{{ $icon }}{{ else }}{{ $icon | relURL }}{{ end }}" alt="" loading="lazy" aria-hidden="true">
+  {{ .name }}
+</a>
