@@ -397,8 +397,8 @@ nav {
   grid-row: 1;
   align-items: flex-end;
   flex-direction: column;
-  justify-content: center;
-  align-self: center;
+  justify-content: flex-end;
+  align-self: end;
   gap: 6px;
   justify-self: end;
   text-align: right;
@@ -452,6 +452,10 @@ nav {
     gap: 13px;
   }
 
+  .footer-links-heading {
+    text-align: center;
+  }
+
   .footer-links-list {
     width: 100%;
     display: grid;
@@ -461,6 +465,7 @@ nav {
 
   .footer-links-column {
     min-width: 0;
+    align-items: center;
     padding: 0 16px;
     gap: 8px;
   }
@@ -470,13 +475,16 @@ nav {
   }
 
   .footer-link-text {
+    width: max-content;
     padding-left: 0;
+    justify-content: flex-start;
   }
 
   .footer-meta {
     grid-column: 1;
     grid-row: auto;
     align-items: center;
+    align-self: auto;
     flex-direction: column;
     justify-self: center;
     gap: 8px;
