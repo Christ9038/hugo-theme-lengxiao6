@@ -9,7 +9,7 @@
           <p class="eyebrow">FRIEND LINKS</p>
           <h2 id="footer-links-title">友情链接</h2>
         </div>
-        <nav class="footer-links-list" aria-label="友情链接列表">
+        <nav class="footer-links-list" style="--footer-link-rows: {{ div (add $linkCount 1) 2 }};" aria-label="友情链接列表">
           {{ range $column := seq 0 (sub $columnCount 1) }}
             <div class="footer-links-column">
               <div class="footer-links-column-inner">

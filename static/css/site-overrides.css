@@ -467,23 +467,34 @@ nav {
   .footer-links-list {
     width: 100%;
     display: grid;
+    position: relative;
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: repeat(var(--footer-link-rows, 3), auto);
+    grid-auto-flow: column;
     gap: 0;
   }
 
-  .footer-links-column {
-    min-width: 0;
-    align-items: center;
-    padding: 0 16px;
-    gap: 8px;
+  .footer-links-list::before {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    border-left: 1px solid color-mix(in srgb, var(--line) 85%, transparent);
+    content: "";
   }
 
-  .footer-links-column:first-child {
-    padding-left: 0;
+  .footer-links-column {
+    display: contents;
+    min-width: 0;
+    padding: 0;
+    border-left: 0;
   }
 
   .footer-link-text {
-    padding-left: 0;
+    width: max-content;
+    max-width: 100%;
+    justify-self: center;
+    padding: 0 16px;
     justify-content: flex-start;
   }
 
