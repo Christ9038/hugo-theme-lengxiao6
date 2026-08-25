@@ -11,7 +11,7 @@
           <p class="eyebrow">FRIEND LINKS</p>
           <h2 id="footer-links-title">友情链接</h2>
         </div>
-        <nav class="footer-links-list footer-links-list--desktop" aria-label="友情链接列表">
+        <nav class="footer-links-list footer-links-list--desktop" style="--footer-link-columns: {{ $columnCount }};" aria-label="友情链接列表">
           {{ range $column := seq 0 (sub $columnCount 1) }}
             <div class="footer-links-column">
               <div class="footer-links-column-inner">

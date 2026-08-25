@@ -357,6 +357,17 @@ nav {
   display: none;
 }
 
+.footer-links-list--desktop {
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(var(--footer-link-columns, 1), minmax(0, 1fr));
+  justify-content: center;
+}
+
+.footer-links-list--desktop .footer-links-column {
+  align-items: center;
+}
+
 .footer-links-column {
   display: flex;
   min-width: 150px;
