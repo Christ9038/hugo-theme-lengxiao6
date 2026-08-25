@@ -25,6 +25,7 @@
     <link rel="stylesheet" href="{{ "lib/katex/katex.min.css" | relURL }}?v=1">
   {{ end }}
   {{ if .IsHome }}{{ with .OutputFormats.Get "json" }}<link rel="alternate" type="application/json" href="{{ .RelPermalink }}">{{ end }}{{ end }}
+  {{ if .IsHome }}{{ with .OutputFormats.Get "rss" }}<link rel="alternate" type="application/rss+xml" title="{{ site.Title | htmlEscape }} RSS" href="{{ .RelPermalink }}">{{ end }}{{ end }}
   {{ partial "analytics.html" . }}
   {{ block "head" . }}{{ end }}
 </head>

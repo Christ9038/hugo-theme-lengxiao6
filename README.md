@@ -117,6 +117,12 @@ Google Analytics 使用 Hugo 内置的 GA4 模板，遵从 Hugo 的 `[privacy.go
   defaultFeaturedImage = "img/featured-light.svg"
   defaultFeaturedImageLight = "img/featured-light.svg"
   defaultFeaturedImageDark = "img/featured-dark.svg"
+
+  # 搜索引擎站点验证，可选；填入各平台提供的 content 值。
+  [params.verification]
+    google = ""
+    bing = ""
+    baidu = ""
 ```
 
 图片路径相对于站点的 `static/` 根目录。封面优先级为：按当前主题的 `defaultFeaturedImageLight` 或 `defaultFeaturedImageDark`，再到 `defaultFeaturedImage`，最后到主题内置浅色/深色默认封面。用户切换外观会保存在浏览器本地；`defaultAppearance` 只决定首次访问的外观。
@@ -183,6 +189,7 @@ Google Analytics 使用 Hugo 内置的 GA4 模板，遵从 Hugo 的 `[privacy.go
 - 页面标题、描述和 Canonical URL。
 - Open Graph 与 Twitter Card 元数据，文章封面优先使用页面资源中的 `featuredImage`。
 - 首页 `WebSite`、文章 `BlogPosting`、作者和面包屑 JSON-LD。
+- 可选的 Google、Bing 和百度站点验证 meta，以及首页 RSS/JSON 订阅声明。
 - 带 sitemap 地址的 `robots.txt`，以及过滤搜索页、作者归档和空分类词条的 sitemap。
 - 搜索页、404 页和空分类词条自动使用 `noindex,follow`。
 - Markdown 图片自动补充 `loading="lazy"`、`decoding="async"`；页面资源图片还会输出宽高属性，降低布局偏移。
