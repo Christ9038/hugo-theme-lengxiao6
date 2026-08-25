@@ -316,22 +316,26 @@ nav {
   gap: 28px;
 }
 
+.site-footer .footer-inner.footer-has-links {
+  grid-template-columns: minmax(170px, .65fr) minmax(360px, 1.45fr) minmax(180px, .7fr);
+  align-items: start;
+  gap: 28px;
+}
+
 .footer-links {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  padding-bottom: 0;
+  display: grid;
+  grid-column: 1 / span 2;
+  grid-template-columns: minmax(170px, .65fr) minmax(360px, 1.45fr);
+  align-items: start;
+  gap: 28px;
 }
 
 .footer-links-heading {
-  display: flex;
-  flex: 0 0 auto;
-  align-items: baseline;
-  gap: 9px;
+  display: block;
 }
 
 .footer-links-heading .eyebrow {
-  margin: 0;
+  margin: 0 0 5px;
   color: var(--accent);
   font-size: 10px;
 }
@@ -344,26 +348,25 @@ nav {
 }
 
 .footer-links-list {
-  display: flex;
+  display: grid;
   min-width: 0;
-  align-items: center;
-  flex-wrap: wrap;
+  grid-auto-flow: column;
+  grid-auto-columns: max-content;
+  grid-template-rows: repeat(3, minmax(20px, auto));
+  align-items: start;
+  justify-content: start;
+  gap: 7px 26px;
 }
 
 .footer-link-text {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 1px 12px;
-  border-right: 1px solid var(--line);
+  padding: 0;
   color: var(--muted);
   font-size: 12px;
   line-height: 1.4;
   transition: color .2s ease;
-}
-
-.footer-link-text:last-child {
-  border-right: 0;
 }
 
 .footer-link-icon {
@@ -380,9 +383,13 @@ nav {
 
 .footer-meta {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 24px;
+  grid-column: 3;
+  grid-row: 1;
+  align-items: flex-end;
+  justify-content: start;
+  gap: 5px;
+  justify-self: end;
+  text-align: right;
 }
 
 .footer-copyright,
@@ -430,18 +437,28 @@ nav {
     gap: 22px;
   }
 
+  .site-footer .footer-inner.footer-has-links {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
   .footer-links-heading {
     align-items: baseline;
   }
 
   .footer-links {
+    grid-column: 1;
+    grid-template-columns: 1fr;
     align-items: flex-start;
-    flex-direction: column;
     gap: 10px;
   }
 
   .footer-links-list {
     width: 100%;
+    grid-auto-flow: row;
+    grid-auto-columns: auto;
+    grid-template-rows: none;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .footer-link-text {
@@ -449,6 +466,8 @@ nav {
   }
 
   .footer-meta {
+    grid-column: 1;
+    grid-row: auto;
     align-items: center;
     flex-direction: column;
     gap: 8px;

@@ -1,5 +1,5 @@
 <footer class="site-footer">
-  <div class="shell footer-inner">
+  <div class="shell footer-inner{{ with site.Params.footer.links }} footer-has-links{{ end }}">
     {{ with site.Params.footer.links }}
       <section class="footer-links" aria-labelledby="footer-links-title">
         <div class="footer-links-heading">
