@@ -359,17 +359,14 @@ nav {
 
 .footer-links-list--desktop {
   display: grid;
-  width: 100%;
-  grid-template-columns: repeat(var(--footer-link-columns, 1), minmax(0, 1fr));
-  justify-content: center;
+  width: max-content;
+  max-width: 100%;
+  grid-template-columns: repeat(var(--footer-link-columns, 1), minmax(150px, max-content));
+  justify-content: start;
 }
 
 .footer-links-list--desktop .footer-links-column {
-  align-items: center;
-}
-
-.footer-links-list--desktop .footer-links-column:first-child {
-  padding-left: 24px;
+  align-items: flex-start;
 }
 
 .footer-links-column {
