@@ -368,6 +368,10 @@ nav {
   align-items: center;
 }
 
+.footer-links-list--desktop .footer-links-column:first-child {
+  padding-left: 24px;
+}
+
 .footer-links-column {
   display: flex;
   min-width: 150px;
@@ -503,7 +507,7 @@ nav {
   }
 
   .footer-links-list--mobile .footer-links-column:first-child {
-    padding-left: 0;
+    padding-left: 16px;
     border-left: 0;
   }
 
