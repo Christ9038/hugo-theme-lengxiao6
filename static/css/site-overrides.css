@@ -490,6 +490,10 @@ nav {
     border-left: 0;
   }
 
+  .footer-links-column-inner {
+    display: contents;
+  }
+
   .footer-link-text {
     width: max-content;
     max-width: 100%;
