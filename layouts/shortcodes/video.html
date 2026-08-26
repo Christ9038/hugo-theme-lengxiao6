@@ -15,7 +15,12 @@
 {{- end -}}
 {{- $preload := .Get "preload" | default "metadata" -}}
 {{- $type := .Get "type" | default "video/mp4" -}}
-<figure class="article-video">
+{{- $maxWidth := .Get "max-width" -}}
+{{- $maxHeight := .Get "max-height" -}}
+{{- $videoStyle := "" -}}
+{{- with $maxWidth }}{{- $videoStyle = printf "%s--article-video-max-width: %s;" $videoStyle . -}}{{- end -}}
+{{- with $maxHeight }}{{- $videoStyle = printf "%s--article-video-max-height: %s;" $videoStyle . -}}{{- end -}}
+<figure class="article-video"{{ with $videoStyle }} style="{{ . | safeCSS }}"{{ end }}>
   <video controls playsinline preload="{{ $preload }}"{{ with $poster }} poster="{{ .RelPermalink }}"{{ end }}{{ if eq ($.Get "autoplay") "true" }} autoplay{{ end }}{{ if eq ($.Get "loop") "true" }} loop{{ end }}{{ if eq ($.Get "muted") "true" }} muted{{ end }}>
     <source src="{{ $video.RelPermalink }}" type="{{ $type }}">
     Your browser does not support the video tag.

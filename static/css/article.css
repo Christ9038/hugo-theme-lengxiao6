@@ -135,8 +135,11 @@
 .article-video video {
   display: block;
   width: 100%;
-  max-width: 100%;
+  max-width: var(--article-video-max-width, 100%);
+  max-height: var(--article-video-max-height, none);
   height: auto;
+  margin-inline: auto;
+  object-fit: contain;
   border-radius: 8px;
 }
 
