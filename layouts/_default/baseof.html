@@ -2,10 +2,13 @@
 {{ $defaultTheme := site.Params.defaultAppearance | default "light" }}
 {{ $enableCodeCopy := true }}
 {{ if isset site.Params "enableCodeCopy" }}{{ $enableCodeCopy = site.Params.enableCodeCopy }}{{ end }}
+{{ $themeColor := "#f5f5f7" }}
+{{ if eq $defaultTheme "dark" }}{{ $themeColor = "#18181a" }}{{ end }}
 <html lang="{{ site.LanguageCode | default "zh-cn" }}" data-theme="{{ $defaultTheme }}" data-search-index="{{ "index.json" | relURL }}">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="{{ $themeColor }}">
   <title>{{ if .IsHome }}{{ site.Title }}{{ else if eq .Kind "404" }}页面不存在 · {{ site.Title }}{{ else }}{{ .Title }} · {{ site.Title }}{{ end }}</title>
   <meta name="description" content="{{ .Description | default site.Params.description | plainify | htmlEscape }}">
   {{ if or (eq .Kind "404") (eq .Section "search") (and (eq .Kind "term") (eq (len .Pages) 0)) }}
@@ -38,7 +41,7 @@
   {{ partial "header.html" . }}
   <main>{{ block "main" . }}{{ end }}</main>
   {{ partial "footer.html" . }}
-  <script src="{{ "js/theme.js" | relURL }}?v=6" defer></script>
+  <script src="{{ "js/theme.js" | relURL }}?v=7" defer></script>
   <script src="{{ "js/link-cards.js" | relURL }}?v=5" defer></script>
   {{ if or (.Params.math | default false) (.Page.HasShortcode "katex") }}
     <script src="{{ "lib/katex/katex.min.js" | relURL }}?v=1" defer></script>

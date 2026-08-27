@@ -5,6 +5,7 @@ const initThemeAndSearch = () => {
   const mainNavigation = document.querySelector('#main-navigation');
   const themeButton = document.querySelector('[data-theme-toggle]');
   const themeIcon = document.querySelector('[data-theme-icon]');
+  const themeColorMeta = document.querySelector('meta[name="theme-color"]');
   let savedTheme = null;
 
   const closeNavigation = () => {
@@ -38,6 +39,8 @@ const initThemeAndSearch = () => {
 
   const syncThemeButton = () => {
     const isDark = root.dataset.theme === 'dark';
+    const themeColor = getComputedStyle(root).getPropertyValue('--bg').trim();
+    if (themeColorMeta && themeColor) themeColorMeta.setAttribute('content', themeColor);
     document.querySelectorAll('[data-theme-image]').forEach(image => {
       const source = isDark ? image.dataset.darkSrc : image.dataset.lightSrc;
       if (source && image.getAttribute('src') !== source) image.setAttribute('src', source);
